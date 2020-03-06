@@ -16,7 +16,7 @@
     <td>
         <code>wget https://github.com/doomlerd/PreMiD-Linux/releases/latest/download/PreMiD-Portable.AppImage && chmod +x PreMiD*.AppImage</code><br>run <code>./PreMiD*.AppImage</code> afterwards or just double-click it
     </td>
-    <td><span style="font-weight:bold">This is the recommended package</span> to use, either if you want to try PreMiD or just don't want to install it ( or maybe put it in a USB stick ), it's always up to date but <span style="font-style:italic">doesn't auto-launch at the system startup</span>, so if you get tired of having to open it each time, use the other methods bellow ( according to your Linux distribution ) </td>
+    <td><b>This is the recommended package</b> to use, either if you want to try PreMiD or just don't want to install it ( or maybe put it in a USB stick ), it's always up to date but <i>doesn't auto-launch at the system startup</i>, so if you get tired of having to open it each time, use the other methods bellow ( according to your Linux distribution )</td>
   </tr>
   <tr>
     <td rowspan="5">Arch Linux</td>
