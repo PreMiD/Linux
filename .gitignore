@@ -1,0 +1,14 @@
+node_modules
+out
+dist
+tmp
+
+.vscode
+.env
+
+src/package-lock.json
+src/yarn.lock
+src/package.json
+
+*.app
+*.js

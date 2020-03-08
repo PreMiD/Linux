@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=PreMiD
+GenericName=PreMiD
+Comment=Discord Rich Presence for web services
+Exec=/usr/bin/premid
+Terminal=false
+Type=Application
+Icon=premid.png
