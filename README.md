@@ -1,8 +1,14 @@
 <div align="center">
-    <img src="https://avatars3.githubusercontent.com/u/46326568" width="128px" style="max-width:100%;">
-    <h1>PreMiD <code>--linux</code></h1>
-</div>
 
+<img src="https://avatars3.githubusercontent.com/u/46326568" width="128px" style="max-width:100%;">
+<h1>PreMiD <code>--linux</code></h1>
+
+# Discord Rich Presence for web services!
+| Deployment | Total downloads | Latest release |
+| :---: | :---: | :---: |
+|  [![CI](https://github.com/PreMiD/Linux/workflows/CI/badge.svg?branch=master&event=push)](https://github.com/PreMiD/Linux/actions)  |  [![All releases](https://img.shields.io/github/downloads/PreMiD/Linux/total.svg?maxAge=86400)](https://github.com/PreMiD/Linux/releases)  |  [![Latest release](https://img.shields.io/github/v/release/PreMiD/Linux.svg?maxAge=86400)](https://github.com/PreMiD/Linux/releases) <br> [![Github Releases](https://img.shields.io/github/downloads/PreMiD/Linux/latest/total.svg?maxAge=86400)](https://github.com/PreMiD/Linux/releases)  |
+
+## Installing
 <table>
   <tr>
     <th>Supported Linux Distribution</th>
@@ -44,3 +50,14 @@
     <td>Soon (TM), use the AppImage for now</td>
   </tr>
 </table>
+
+## Troubleshooting
+Create a #support ticket in our Discord server :
+<div>
+  <a target="_blank" href="https://discord.gg/WvfVZ8T" title="Join our Discord!">
+    <img height="75px" draggable="false" src="https://discordapp.com/api/guilds/493130730549805057/widget.png?style=banner2" alt="Join our Discord!">
+  </a>
+</div>
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FPreMiD%2FLinux.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FPreMiD%2FLinux?ref=badge_large)
