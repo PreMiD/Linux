@@ -4,9 +4,18 @@
 <h1>PreMiD <code>--linux</code></h1>
 
 # Discord Rich Presence for web services!
-| Deployment | Total downloads | Latest release |
-| :---: | :---: | :---: |
-|  [![CI](https://github.com/PreMiD/Linux/workflows/CI/badge.svg?branch=master&event=push)](https://github.com/PreMiD/Linux/actions)  |  [![All releases](https://img.shields.io/github/downloads/PreMiD/Linux/total.svg?maxAge=86400)](https://github.com/PreMiD/Linux/releases)  |  [![Latest release](https://img.shields.io/github/v/release/PreMiD/Linux.svg?maxAge=86400)](https://github.com/PreMiD/Linux/releases) <br> [![Github Releases](https://img.shields.io/github/downloads/PreMiD/Linux/latest/total.svg?maxAge=86400)](https://github.com/PreMiD/Linux/releases)  |
+<table>
+  <tr>
+    <th>Deployment</th>
+    <th>Total downloads</th>
+    <th>Latest release</th>
+  </tr>
+  <tr>
+    <td>[![CI](https://github.com/PreMiD/Linux/workflows/CI/badge.svg?branch=master&event=push)](https://github.com/PreMiD/Linux/actions)</td>
+    <td>[![All releases](https://img.shields.io/github/downloads/PreMiD/Linux/total.svg?maxAge=86400)](https://github.com/PreMiD/Linux/releases)</td>
+    <td>[![Latest release](https://img.shields.io/github/v/release/PreMiD/Linux.svg?maxAge=86400)](https://github.com/PreMiD/Linux/releases) <br> [![Github Releases](https://img.shields.io/github/downloads/PreMiD/Linux/latest/total.svg?maxAge=86400)](https://github.com/PreMiD/Linux/releases)</td>
+  </tr>
+</table>
 
 ## Installing
 <table>
