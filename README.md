@@ -4,6 +4,7 @@
 <h1>PreMiD <code>--linux</code></h1>
 
 # Discord Rich Presence for web services!
+
 <table>
   <tr>
     <th>Deployment</th>
@@ -11,13 +12,14 @@
     <th>Latest release</th>
   </tr>
   <tr>
-    <td>[![CI](https://github.com/PreMiD/Linux/workflows/CI/badge.svg?branch=master&event=push)](https://github.com/PreMiD/Linux/actions)</td>
-    <td>[![All releases](https://img.shields.io/github/downloads/PreMiD/Linux/total.svg?maxAge=86400)](https://github.com/PreMiD/Linux/releases)</td>
-    <td>[![Latest release](https://img.shields.io/github/v/release/PreMiD/Linux.svg?maxAge=86400)](https://github.com/PreMiD/Linux/releases) <br> [![Github Releases](https://img.shields.io/github/downloads/PreMiD/Linux/latest/total.svg?maxAge=86400)](https://github.com/PreMiD/Linux/releases)</td>
+    <td><a href="https://github.com/PreMiD/Linux/actions"><img src="https://github.com/PreMiD/Linux/workflows/CI/badge.svg?branch=master&event=push" alt="CI" width="400" height="300"></a></td>
+    <td><a href="https://github.com/PreMiD/Linux/releases"><img src="https://img.shields.io/github/downloads/PreMiD/Linux/total.svg?maxAge=86400" alt="All releases" width="400" height="300"></a></td>
+    <td><a href="https://github.com/PreMiD/Linux/releases/latest"><img src="https://img.shields.io/github/v/release/PreMiD/Linux.svg?maxAge=86400" alt="Latest release" width="400" height="300"><br><img src="https://img.shields.io/github/downloads/PreMiD/Linux/latest/total.svg?maxAge=86400" alt="Github releases" width="400" height="300"></a></td>
   </tr>
 </table>
 
 ## Installing
+
 <table>
   <tr>
     <th>Supported Linux Distribution</th>
@@ -61,7 +63,9 @@
 </table>
 
 ## Troubleshooting
+
 Create a #support ticket in our Discord server :
+
 <div>
   <a target="_blank" href="https://discord.gg/WvfVZ8T" title="Join our Discord!">
     <img height="75px" draggable="false" src="https://discordapp.com/api/guilds/493130730549805057/widget.png?style=banner2" alt="Join our Discord!">
@@ -69,4 +73,5 @@ Create a #support ticket in our Discord server :
 </div>
 
 ## License
+
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FPreMiD%2FLinux.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FPreMiD%2FLinux?ref=badge_large)
