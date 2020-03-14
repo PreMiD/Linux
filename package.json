@@ -57,7 +57,7 @@
     "@types/discord-rpc": "3.0.2",
     "@types/node": "13.9.0",
     "@types/socket.io": "2.1.4",
-    "electron": "8.1.0",
+    "electron": "8.1.1",
     "electron-builder": "22.4.1",
     "typescript": "3.8.3"
   },
