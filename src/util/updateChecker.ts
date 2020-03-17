@@ -6,7 +6,6 @@ autoUpdater.autoDownload = false;
 
 export async function checkForUpdate(auto = false) {
   autoUpdater.autoDownload = auto;
-  updateTray("checking");
   try {
     autoUpdater.checkForUpdates();
   } catch (error) {
@@ -57,10 +56,14 @@ function updateTray(reason: string) {
 
 // Temporarily
 function errHandler(error: any) {
-  console.log(
-    "An error occured while updating " +
-      (autoUpdater.autoDownload ? "[AUTO] :" : "[MANUAL] :"),
-    error ? (error.stack || error).toString() : "unknown"
-  );
+  if (error.includes("ERR_INTERNET_DISCONNECTED")) {
+    console.log("No internet detected, skipping update check.");
+  } else {
+    console.log(
+      "An error occured while updating " +
+        (autoUpdater.autoDownload ? "[AUTO] :" : "[MANUAL] :"),
+      error ? (error.stack || error).toString() : "unknown"
+    );
+  }
   updateTray("standby");
 }

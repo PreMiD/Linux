@@ -6,7 +6,7 @@ export default interface ExtensionSettings {
   /**
    * If the user approved to use the automatic crash reporter
    */
-  improvementProgramme: boolean;
+  improvementProgram: boolean;
   /**
    * If extension is enabled
    */

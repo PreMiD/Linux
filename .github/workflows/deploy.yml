@@ -32,14 +32,10 @@ jobs:
           yarn run dist
       - name: Building
         run: yarn run build
-        env:
-          DSN: ${{ secrets.DSN }}
       - name: Building AppImage
         run: |
           jq -c '.productName = "PreMiD Portable"' ./dist/app/package.json > tmp.$$.json && mv tmp.$$.json ./dist/app/package.json
           yarn run build:n-appimage
-        env:
-          DSN: ${{ secrets.DSN }}
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
@@ -78,8 +74,6 @@ jobs:
           yarn run dist
       - name: Building
         run: yarn run build
-        env:
-          DSN: ${{ secrets.DSN }}
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
@@ -97,4 +91,3 @@ jobs:
           yarn run build:appimage
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DSN: ${{ secrets.DSN }}

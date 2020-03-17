@@ -10,8 +10,6 @@ import { checkForUpdate } from "./util/updateChecker";
 
 export let trayManager: TrayManager;
 
-//* Define and set it to null
-//* Set AppUserModelId for task manager etc
 //* When app is ready
 export let updateCheckerInterval = null;
 app.whenReady().then(async () => {
@@ -54,11 +52,12 @@ app.whenReady().then(async () => {
 });
 
 async function initReporter(firstLaunch: boolean = false) {
-  if (firstLaunch) settings.set("improvementProgramme", true);
-  if (settings.get("improvementProgramme")) {
+  if (firstLaunch) settings.set("improvementProgram", true);
+  if (settings.get("improvementProgram")) {
     console.log("Initializing Sentry...");
     Sentry.init({
-      dsn: process.env.DSN
+      // definitely not exposed
+      dsn: "https://1c767d1b03fd4f548df470a514af80e1@sentry.io/5022280"
     });
   }
 }

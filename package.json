@@ -18,7 +18,7 @@
   "license": "MPL-2.0",
   "scripts": {
     "init": "tsc && devScript --copyOnly",
-    "start": "npm run init && electron dist/app/.",
+    "start": "electron dist/app/.",
     "dev": "devScript",
     "dist": "tsc && devScript --copyOnly && cd dist/app/ && npm i",
     "build": "electron-builder --project ./dist/app/",

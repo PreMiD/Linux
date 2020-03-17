@@ -9,7 +9,7 @@ export let settings = new ElectronStore({
   defaults: {
     firstLaunch: true,
     autoLaunch: true,
-    improvementProgramme: false
+    improvementProgram: false
   }
 });
 
