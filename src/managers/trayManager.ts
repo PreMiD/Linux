@@ -4,12 +4,11 @@ import { trayManager } from "..";
 import { checkForUpdate, updateProcess } from "../util/updateChecker";
 import { connected } from "./socketManager";
 
-let trayIcon = join(__dirname, "../assets/tray/Icon@2x.png");
 export class TrayManager {
   tray: Tray;
 
   constructor() {
-    this.tray = new Tray(trayIcon);
+    this.tray = new Tray(join(__dirname, "../assets/tray/Icon@2x.png"));
     this.tray.setToolTip(app.name);
 
     this.tray.on("right-click", () => this.update());
@@ -19,7 +18,6 @@ export class TrayManager {
     this.tray.setContextMenu(
       Menu.buildFromTemplate([
         {
-          icon: join(__dirname, "../assets/tray/Icon.png"),
           label: `${app.name} v${app.getVersion()}`,
           enabled: false
         },

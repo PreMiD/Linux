@@ -7,7 +7,9 @@ import ExtensionSettings from "../../@types/PreMiD/ExtensionSettings";
 //* Export and set default settings
 export let settings = new ElectronStore({
   defaults: {
-    autoLaunch: true
+    firstLaunch: true,
+    autoLaunch: true,
+    improvementProgramme: false
   }
 });
 
@@ -16,12 +18,11 @@ export let settings = new ElectronStore({
  * @param extensionSettings Settings from extension
  */
 export function update(extensionSettings: ExtensionSettings) {
-  //* remove title if disabled
   //* Update autolaunch if updated
   //* Save Settings
-  console.log("Updated settings");
   if (settings.get("autoLaunch") != extensionSettings.autoLaunch) {
     settings.set("autoLaunch", extensionSettings.autoLaunch);
     updateAutoLaunch();
+    console.log("Updated settings");
   }
 }
