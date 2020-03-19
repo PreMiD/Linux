@@ -51,7 +51,6 @@
       ]
     },
     "appImage": {
-      "productName": "PreMiD Portable",
       "publish": [
         {
           "provider": "github",
