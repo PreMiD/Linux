@@ -1,5 +1,5 @@
 import "source-map-support/register";
-import { init } from "@sentry/electron";
+import { init as initSentry } from "@sentry/electron";
 
 import { app, dialog, shell } from "electron";
 import { init as initSocket, socket } from "./managers/socketManager";
@@ -13,6 +13,8 @@ export let trayManager: TrayManager;
 //* When app is ready
 export let updateCheckerInterval = null;
 app.whenReady().then(async () => {
+  trayManager = new TrayManager();
+
   if (settings.get("firstLaunch")) {
     settings.set("firstLaunch", false);
     dialog
@@ -39,7 +41,6 @@ app.whenReady().then(async () => {
     await initReporter(false);
   }
 
-  trayManager = new TrayManager();
   await initAutoLaunch();
   await initSocket();
 
@@ -55,7 +56,7 @@ async function initReporter(firstLaunch: boolean = false) {
   if (firstLaunch) settings.set("improvementProgram", true);
   if (settings.get("improvementProgram")) {
     console.log("Initializing Sentry...");
-    init({
+    return initSentry({
       dsn: "https://ff31de49be4e4a2bb6065f1d62a7afeb@sentry.io/5044446"
     });
   }
