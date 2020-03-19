@@ -32,6 +32,7 @@
       "maintainer": "Jack 'DooMLorD' W. <doomlordcs@gmail.com> (https://github.com/doomlerd)",
       "category": "Utility",
       "artifactName": "${productName}.${ext}",
+      "icon": "assets/appIcon.icns",
       "target": [
         "tar.gz",
         "deb",
