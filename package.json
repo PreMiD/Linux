@@ -6,7 +6,7 @@
     "Jack 'DooMLorD' W. <doomlordcs@gmail.com> (https://github.com/doomlerd)"
   ],
   "description": "Discord Rich Presence for web services",
-  "version": "2.2.000",
+  "version": "2.1.9",
   "repository": {
     "type": "git",
     "url": "git://github.com/PreMiD/Linux.git"
@@ -21,37 +21,71 @@
     "start": "electron dist/app/.",
     "dev": "devScript",
     "dist": "tsc && devScript --copyOnly && cd dist/app/ && yarn install",
-    "build": "electron-builder --project ./dist/app/",
-    "build:appimage": "electron-builder --project ./dist/app/ build -l AppImage --x64 -p onTagOrDraft",
-    "build:n-appimage": "electron-builder --project ./dist/app/ build -l AppImage --x64 -p never"
+    "build": "electron-builder --project ./dist/app/ -p never",
+    "release": "electron-builder --project ./dist/app/"
   },
   "build": {
     "appId": "com.PreMiD.app",
-    "copyright": "PreMiD Org",
+    "copyright": "PreMiD Org.",
+    "publish": [
+      {
+        "provider": "github",
+        "repo": "Linux",
+        "owner": "PreMiD",
+        "publishAutoUpdate": false
+      }
+    ],
     "linux": {
-      "maintainer": "Jack 'DooMLorD' W. <doomlordcs@gmail.com> (https://github.com/doomlerd)",
       "category": "Utility",
-      "artifactName": "${productName}.${ext}",
       "icon": "assets/appIcon.icns",
+      "maintainer": "Jack 'DooMLorD' W. <doomlordcs@gmail.com> (https://github.com/doomlerd)",
       "target": [
-        "tar.gz",
         "deb",
-        "rpm"
-      ],
+        "rpm",
+        "tar.gz",
+        "AppImage"
+      ]
+    },
+    "AppImage": {
+      "productName": "PreMiD Portable",
+      "publish": [
+        {
+          "provider": "github",
+          "owner": "PreMiD",
+          "repo": "Linux",
+          "publishAutoUpdate": true
+        }
+      ]
+    },
+    "tar.gz": {
       "extraFiles": [
         "assets/premid.desktop",
         "assets/appIcon.png"
       ]
     },
-    "publish": [
-      {
-        "provider": "github",
-        "owner": "PreMiD",
-        "repo": "Linux",
-        "vPrefixedTagName": true,
-        "releaseType": "release"
-      }
-    ]
+    "deb": {
+      "packageCategory": "Utility",
+      "synopsis": "Discord Rich Presence for web services",
+      "publish": [
+        {
+          "package": "premid",
+          "repo": "debian-ubuntu",
+          "user": "premid",
+          "component": "main",
+          "provider": "bintray"
+        }
+      ]
+    },
+    "rpm": {
+      "publish": [
+        {
+          "package": "premid",
+          "repo": "redhat",
+          "user": "premid",
+          "provider": "bintray"
+        }
+      ]
+    }
   },
   "devDependencies": {
     "@timeraa/devscript": "Timeraa/DevScript",
