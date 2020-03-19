@@ -39,6 +39,10 @@
       "category": "Utility",
       "icon": "assets/appIcon.icns",
       "maintainer": "Jack 'DooMLorD' W. <doomlordcs@gmail.com> (https://github.com/doomlerd)",
+      "extraFiles": [
+        "assets/premid.desktop",
+        "assets/appIcon.png"
+      ],
       "target": [
         "deb",
         "rpm",
@@ -55,12 +59,6 @@
           "repo": "Linux",
           "publishAutoUpdate": true
         }
-      ]
-    },
-    "tar.gz": {
-      "extraFiles": [
-        "assets/premid.desktop",
-        "assets/appIcon.png"
       ]
     },
     "deb": {
