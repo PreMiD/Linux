@@ -34,8 +34,8 @@ jobs:
         run: yarn run build
       - name: Publishing
         run: |
-          curl -T ./dist/app/${{ steps.info.outputs.productName }}.deb -udoomlerd:${{ secrets.BT_KEY }} https://api.bintray.com/content/premid/debian-ubuntu/premid/${{ steps.info.outputs.version }}-${{ steps.info.outputs.timestamp }}/;deb_distribution=nightly;deb_component=main;deb_architecture=amd64
-          curl -T ./dist/app/${{ steps.info.outputs.productName }}.rpm -udoomlerd:${{ secrets.BT_KEY }} https://api.bintray.com/content/premid/redhat-nightly/premid/${{ steps.info.outputs.version }}-${{ steps.info.outputs.timestamp }}/
+          curl -T ./dist/app/dist/${{ steps.info.outputs.productName }}.deb -udoomlerd:${{ secrets.BT_KEY }} https://api.bintray.com/content/premid/debian-ubuntu/premid/${{ steps.info.outputs.version }}-${{ steps.info.outputs.timestamp }}/;deb_distribution=nightly;deb_component=main;deb_architecture=amd64
+          curl -T ./dist/app/dist/${{ steps.info.outputs.productName }}.rpm -udoomlerd:${{ secrets.BT_KEY }} https://api.bintray.com/content/premid/redhat-nightly/premid/${{ steps.info.outputs.version }}-${{ steps.info.outputs.timestamp }}/
       - name: Building AppImage
         run: |
           jq -c '.productName = "PreMiD Portable"' ./dist/app/package.json > tmp.$$.json && mv tmp.$$.json ./dist/app/package.json
@@ -80,8 +80,8 @@ jobs:
         run: yarn run build
       - name: Publishing
         run: |
-          curl -T ./dist/app/${{ steps.info.outputs.productName }}.deb -udoomlerd:${{ secrets.BT_KEY }} https://api.bintray.com/content/premid/debian-ubuntu/premid/${{ steps.info.outputs.version }}/;deb_distribution=stable;deb_component=main;deb_architecture=amd64
-          curl -T ./dist/app/${{ steps.info.outputs.productName }}.rpm -udoomlerd:${{ secrets.BT_KEY }} https://api.bintray.com/content/premid/redhat/premid/${{ steps.info.outputs.version }}/
+          curl -T ./dist/app/dist/${{ steps.info.outputs.productName }}.deb -udoomlerd:${{ secrets.BT_KEY }} https://api.bintray.com/content/premid/debian-ubuntu/premid/${{ steps.info.outputs.version }}/;deb_distribution=stable;deb_component=main;deb_architecture=amd64
+          curl -T ./dist/app/dist/${{ steps.info.outputs.productName }}.rpm -udoomlerd:${{ secrets.BT_KEY }} https://api.bintray.com/content/premid/redhat/premid/${{ steps.info.outputs.version }}/
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
