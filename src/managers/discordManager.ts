@@ -46,14 +46,17 @@ class RPCClient {
     if (!this.clientReady || !presenceData) return;
 
     // Workaround
-    if(presenceData.presenceData.largeImageText && presenceData.presenceData.largeImageText.includes("PreMiD")) {
-      presenceData.presenceData.largeImageText = "PreMiD 🐧 v" + app.getVersion(); 
+    if (
+      presenceData.presenceData.largeImageText &&
+      presenceData.presenceData.largeImageText.includes("PreMiD")
+    ) {
+      presenceData.presenceData.largeImageText =
+        "PreMiD 🐧 v" + app.getVersion();
     }
-  
+
     this.client
       .setActivity(presenceData.presenceData)
       .catch(() => this.destroy());
-    console.log("Set activity");
   }
 
   clearActivity() {

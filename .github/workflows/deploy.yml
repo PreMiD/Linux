@@ -8,7 +8,7 @@ jobs:
   nightly:
     name: Nightly Build
     runs-on: ubuntu-latest
-    if: "github.event_name == 'repository_dispatch' || (github.event_name == 'push' && !contains(github.event.head_commit.message, '[REL]'))"
+    if: "github.event_name == 'push' && !contains(github.event.head_commit.message, '[REL]')"
     steps:
       - uses: actions/checkout@master
       - uses: actions/setup-node@master
@@ -32,6 +32,12 @@ jobs:
           yarn run dist
       - name: Building
         run: yarn run build
+      - name: Publishing
+        run: |
+          curl -T ${{ steps.info.outputs.productName }}.deb -udoomlerd:${API} https://api.bintray.com/content/premid/debian-ubuntu/premid/${{ steps.info.outputs.version }}-${{ steps.info.outputs.timestamp }}/;deb_distribution=nightly;deb_component=main;deb_architecture=amd64
+          curl -T ${{ steps.info.outputs.productName }}.rpm -udoomlerd:${API} https://api.bintray.com/content/premid/redhat-nightly/premid/${{ steps.info.outputs.version }}-${{ steps.info.outputs.timestamp }}/
+        env:
+          API: ${{ secrets.BT_KEY }}
       - name: Building AppImage
         run: |
           jq -c '.productName = "PreMiD Portable"' ./dist/app/package.json > tmp.$$.json && mv tmp.$$.json ./dist/app/package.json
@@ -74,6 +80,12 @@ jobs:
           yarn run dist
       - name: Building
         run: yarn run build
+      - name: Publishing
+        run: |
+          curl -T ${{ steps.info.outputs.productName }}.deb -udoomlerd:${API} https://api.bintray.com/content/premid/debian-ubuntu/premid/${{ steps.info.outputs.version }}/;deb_distribution=stable;deb_component=main;deb_architecture=amd64
+          curl -T ${{ steps.info.outputs.productName }}.rpm -udoomlerd:${API} https://api.bintray.com/content/premid/redhat/premid/${{ steps.info.outputs.version }}/
+        env:
+          API: ${{ secrets.BT_KEY }}
       - name: Release
         uses: softprops/action-gh-release@v1
         with:

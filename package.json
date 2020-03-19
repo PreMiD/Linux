@@ -6,7 +6,7 @@
     "Jack 'DooMLorD' W. <doomlordcs@gmail.com> (https://github.com/doomlerd)"
   ],
   "description": "Discord Rich Presence for web services",
-  "version": "2.1.8",
+  "version": "2.2.000",
   "repository": {
     "type": "git",
     "url": "git://github.com/PreMiD/Linux.git"
@@ -20,7 +20,7 @@
     "init": "tsc && devScript --copyOnly",
     "start": "electron dist/app/.",
     "dev": "devScript",
-    "dist": "tsc && devScript --copyOnly && cd dist/app/ && npm i",
+    "dist": "tsc && devScript --copyOnly && cd dist/app/ && yarn install",
     "build": "electron-builder --project ./dist/app/",
     "build:appimage": "electron-builder --project ./dist/app/ build -l AppImage --x64 -p onTagOrDraft",
     "build:n-appimage": "electron-builder --project ./dist/app/ build -l AppImage --x64 -p never"
@@ -31,10 +31,11 @@
     "linux": {
       "maintainer": "Jack 'DooMLorD' W. <doomlordcs@gmail.com> (https://github.com/doomlerd)",
       "category": "Utility",
-      "compression": "store",
       "artifactName": "${productName}.${ext}",
       "target": [
-        "tar.gz"
+        "tar.gz",
+        "deb",
+        "rpm"
       ],
       "extraFiles": [
         "assets/premid.desktop",

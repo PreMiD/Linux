@@ -19,15 +19,15 @@ app.whenReady().then(async () => {
       .showMessageBox({
         message: "Welcome to PreMiD!",
         detail:
-          "In order to work, the browser extension is also required, would you like to install it now?",
+          "In order to work, the browser extension is required. Would you like to install it now?",
         buttons: ["I already have it", "Show me"],
         type: "question",
         cancelId: 0,
         defaultId: 0,
-        checkboxLabel: "Also enable automatic crash reporting",
+        checkboxLabel: "Enable the improvement program ( crash reporting )",
         checkboxChecked: true
       })
-      .then(async value => {
+      .then(async (value: { checkboxChecked: boolean; response: any }) => {
         if (value.checkboxChecked) await initReporter(true);
         switch (value.response) {
           case 1:
@@ -36,7 +36,7 @@ app.whenReady().then(async () => {
         }
       });
   } else {
-    await initReporter();
+    await initReporter(false);
   }
 
   trayManager = new TrayManager();
@@ -56,8 +56,7 @@ async function initReporter(firstLaunch: boolean = false) {
   if (settings.get("improvementProgram")) {
     console.log("Initializing Sentry...");
     Sentry.init({
-      // definitely not exposed
-      dsn: "https://1c767d1b03fd4f548df470a514af80e1@sentry.io/5022280"
+      dsn: "https://ff31de49be4e4a2bb6065f1d62a7afeb@sentry.io/5044446"
     });
   }
 }

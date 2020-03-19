@@ -56,7 +56,7 @@ function updateTray(reason: string) {
 
 // Temporarily
 function errHandler(error: any) {
-  if (error.includes("ERR_INTERNET_DISCONNECTED")) {
+  if (error.toString().includes("ERR_INTERNET_DISCONNECTED")) {
     console.log("No internet detected, skipping update check.");
   } else {
     console.log(
