@@ -32,15 +32,15 @@ jobs:
           yarn run dist
       - name: Building
         run: yarn run build
-      - name: Publishing
+      - name: Publish
         run: |
-          curl -T ./dist/app/dist/${{ steps.info.outputs.productName }}.deb -udoomlerd:${{ secrets.BT_KEY }} "https://api.bintray.com/content/premid/debian-ubuntu/premid/${{ steps.info.outputs.version }}-${{ steps.info.outputs.timestamp }}/main;deb_distribution=nightly;deb_component=main;deb_architecture=amd64"
-          curl -T ./dist/app/dist/${{ steps.info.outputs.productName }}.rpm -udoomlerd:${{ secrets.BT_KEY }} "https://api.bintray.com/content/premid/redhat-nightly/premid/${{ steps.info.outputs.version }}-${{ steps.info.outputs.timestamp }}/main"
-      - name: Building AppImage
+          curl -T ./dist/app/dist/${{ steps.info.outputs.productName }}.deb -udoomlerd:${{ secrets.BT_KEY }} "https://api.bintray.com/content/premid/debian-ubuntu/premid/${{ steps.info.outputs.version }}-${{ steps.info.outputs.timestamp }}/main;deb_distribution=nightly;deb_component=main;deb_architecture=amd64;publish=1"
+          curl -T ./dist/app/dist/${{ steps.info.outputs.productName }}.rpm -udoomlerd:${{ secrets.BT_KEY }} "https://api.bintray.com/content/premid/redhat-nightly/premid/${{ steps.info.outputs.version }}-${{ steps.info.outputs.timestamp }}/main;publish=1"
+      - name: Build AppImage
         run: |
           jq -c '.productName = "PreMiD Portable"' ./dist/app/package.json > tmp.$$.json && mv tmp.$$.json ./dist/app/package.json
           yarn run build:n-appimage
-      - name: Release
+      - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
@@ -78,11 +78,11 @@ jobs:
           yarn run dist
       - name: Building
         run: yarn run build
-      - name: Publishing
+      - name: Publish
         run: |
-          curl -T ./dist/app/dist/${{ steps.info.outputs.productName }}.deb -udoomlerd:${{ secrets.BT_KEY }} "https://api.bintray.com/content/premid/debian-ubuntu/premid/${{ steps.info.outputs.version }}/;deb_distribution=stable;deb_component=main;deb_architecture=amd64"
-          curl -T ./dist/app/dist/${{ steps.info.outputs.productName }}.rpm -udoomlerd:${{ secrets.BT_KEY }} "https://api.bintray.com/content/premid/redhat/premid/${{ steps.info.outputs.version }}/main"
-      - name: Release
+          curl -T ./dist/app/dist/${{ steps.info.outputs.productName }}.deb -udoomlerd:${{ secrets.BT_KEY }} "https://api.bintray.com/content/premid/debian-ubuntu/premid/${{ steps.info.outputs.version }}/main;deb_distribution=stable;deb_component=main;deb_architecture=amd64;publish=1"
+          curl -T ./dist/app/dist/${{ steps.info.outputs.productName }}.rpm -udoomlerd:${{ secrets.BT_KEY }} "https://api.bintray.com/content/premid/redhat/premid/${{ steps.info.outputs.version }}/main;publish=1"
+      - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
