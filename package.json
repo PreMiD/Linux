@@ -50,7 +50,7 @@
         "AppImage"
       ]
     },
-    "AppImage": {
+    "appImage": {
       "productName": "PreMiD Portable",
       "publish": [
         {
