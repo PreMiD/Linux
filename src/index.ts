@@ -1,5 +1,5 @@
 import "source-map-support/register";
-import * as Sentry from "@sentry/electron";
+import { init } from "@sentry/electron";
 
 import { app, dialog, shell } from "electron";
 import { init as initSocket, socket } from "./managers/socketManager";
@@ -55,7 +55,7 @@ async function initReporter(firstLaunch: boolean = false) {
   if (firstLaunch) settings.set("improvementProgram", true);
   if (settings.get("improvementProgram")) {
     console.log("Initializing Sentry...");
-    Sentry.init({
+    init({
       dsn: "https://ff31de49be4e4a2bb6065f1d62a7afeb@sentry.io/5044446"
     });
   }

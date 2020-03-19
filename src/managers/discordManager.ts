@@ -49,10 +49,9 @@ class RPCClient {
     if (
       presenceData.presenceData.largeImageText &&
       presenceData.presenceData.largeImageText.includes("PreMiD")
-    ) {
+    )
       presenceData.presenceData.largeImageText =
-        "PreMiD 🐧 v" + app.getVersion();
-    }
+        `PreMiD 🐧 v${app.getVersion()}`;
 
     this.client
       .setActivity(presenceData.presenceData)

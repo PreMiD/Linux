@@ -1,4 +1,4 @@
-import { readdirSync, readFileSync, unwatchFile, watchFile } from "fs";
+import { readdirSync, watchFile, readFileSync, unwatchFile } from "fs";
 import { dialog } from "electron";
 import { socket } from "./socketManager";
 import { extname } from "path";
@@ -11,7 +11,7 @@ export async function watchDir(path: string) {
   //* Set currWatchDir
   //* Set watched files to files
   //* Add file watcher to each file
-  let files = await readdirSync(path);
+  let files = readdirSync(path);
   currWatchPath = path + "/";
   presenceDevWatchedFiles = files;
   presenceDevWatchedFiles.map(f => {
@@ -20,18 +20,18 @@ export async function watchDir(path: string) {
     watchFile(currWatchPath + f, { interval: 250 }, async () => {
       //* Read dir
       //* ReadFiles
-      files = await readdirSync(path);
+      files = readdirSync(path);
       readFiles(files, path);
     });
   });
   readFiles(files, path);
 }
 
-async function readFiles(files, path) {
+async function readFiles(files: string[], path: string) {
   //* Send files to extension
   socket.emit("localPresence", {
     files: await Promise.all(
-      files.map(f => {
+      files.map((f: string) => {
         if (extname(f) === ".json")
           return {
             file: f,
