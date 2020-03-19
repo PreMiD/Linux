@@ -1,5 +1,6 @@
 name: CI
 on:
+  repository_dispatch:
   push:
     branches:
       - master
@@ -7,13 +8,17 @@ jobs:
   nightly:
     name: Nightly Build
     runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, '[REL]')"
+    if: "github.event_name == 'push' && !contains(github.event.head_commit.message, '[REL]')"
     steps:
       - uses: actions/checkout@master
       - uses: actions/setup-node@master
       - name: Gather Information
         id: info
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+        run: |
+          echo "::set-output name=timestamp::$(date +%s)"
+          echo "::set-output name=productName::$(node -p -e "require('./package.json').productName")"
+          echo "::set-output name=version::$(node -p -e "require('./package.json').version")"
+          echo "::set-output name=dir::$(yarn cache dir)"
       - uses: actions/cache@v1
         id: yarn-cache
         with:
@@ -26,19 +31,40 @@ jobs:
           yarn install
           yarn run dist
       - name: Building
-        run: yarn run release
+        run: yarn run build
+      - name: Publishing
+        run: |
+          curl -T ./dist/app/dist/${{ steps.info.outputs.productName }}.deb -udoomlerd:${{ secrets.BT_KEY }} "https://api.bintray.com/content/premid/debian-ubuntu/premid/${{ steps.info.outputs.version }}-${{ steps.info.outputs.timestamp }}/main;deb_distribution=nightly;deb_component=main;deb_architecture=amd64"
+          curl -T ./dist/app/dist/${{ steps.info.outputs.productName }}.rpm -udoomlerd:${{ secrets.BT_KEY }} "https://api.bintray.com/content/premid/redhat-nightly/premid/${{ steps.info.outputs.version }}-${{ steps.info.outputs.timestamp }}/main"
+      - name: Building AppImage
+        run: |
+          jq -c '.productName = "PreMiD Portable"' ./dist/app/package.json > tmp.$$.json && mv tmp.$$.json ./dist/app/package.json
+          yarn run build:n-appimage
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            ./dist/app/dist/${{ steps.info.outputs.productName }}.tar.gz
+            ./dist/app/dist/${{ steps.info.outputs.productName }} Portable.AppImage
+          tag_name: v${{ steps.info.outputs.version }}-${{ steps.info.outputs.timestamp }}
+          name: Nightly v${{ steps.info.outputs.version }}-${{ steps.info.outputs.timestamp }}
+          draft: false
+          prerelease: true
         env:
-          BT_TOKEN: ${{ secrets.BT_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   stable:
     name: Stable Build
     runs-on: ubuntu-latest
-    if: "contains(github.event.head_commit.message, '[REL]')"
+    if: "github.event_name == 'push' && contains(github.event.head_commit.message, '[REL]')"
     steps:
       - uses: actions/checkout@master
       - uses: actions/setup-node@master
       - name: Gather Information
         id: info
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+        run: |
+          echo "::set-output name=productName::$(node -p -e "require('./package.json').productName")"
+          echo "::set-output name=version::$(node -p -e "require('./package.json').version")"
+          echo "::set-output name=dir::$(yarn cache dir)"
       - uses: actions/cache@v1
         id: yarn-cache
         with:
@@ -51,6 +77,25 @@ jobs:
           yarn install
           yarn run dist
       - name: Building
-        run: yarn run release
+        run: yarn run build
+      - name: Publishing
+        run: |
+          curl -T ./dist/app/dist/${{ steps.info.outputs.productName }}.deb -udoomlerd:${{ secrets.BT_KEY }} "https://api.bintray.com/content/premid/debian-ubuntu/premid/${{ steps.info.outputs.version }}/;deb_distribution=stable;deb_component=main;deb_architecture=amd64"
+          curl -T ./dist/app/dist/${{ steps.info.outputs.productName }}.rpm -udoomlerd:${{ secrets.BT_KEY }} "https://api.bintray.com/content/premid/redhat/premid/${{ steps.info.outputs.version }}/main"
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            ./dist/app/dist/${{ steps.info.outputs.productName }}.tar.gz
+          tag_name: v${{ steps.info.outputs.version }}
+          name: Stable v${{ steps.info.outputs.version }}
+          draft: true
+          prerelease: false
         env:
-          BT_TOKEN: ${{ secrets.BT_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish AppImage
+        run: |
+          jq -c '.productName = "PreMiD Portable"' ./dist/app/package.json > tmp.$$.json && mv tmp.$$.json ./dist/app/package.json
+          yarn run build:appimage
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
