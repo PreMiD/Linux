@@ -57,7 +57,7 @@
     "@timeraa/devscript": "Timeraa/DevScript",
     "@types/auto-launch": "5.0.1",
     "@types/discord-rpc": "3.0.2",
-    "@types/node": "13.9.0",
+    "@types/node": "13.9.3",
     "@types/socket.io": "2.1.4",
     "electron": "8.0.0",
     "electron-builder": "22.4.1",
