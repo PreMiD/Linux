@@ -7,9 +7,7 @@ import ExtensionSettings from "../../@types/PreMiD/ExtensionSettings";
 //* Export and set default settings
 export let settings = new ElectronStore({
   defaults: {
-    firstLaunch: true,
-    autoLaunch: true,
-    improvementProgram: false
+    autoLaunch: true
   }
 });
 

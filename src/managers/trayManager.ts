@@ -9,8 +9,9 @@ export class TrayManager {
 
   constructor() {
     this.tray = new Tray(join(__dirname, "../assets/tray/Icon@2x.png"));
-    this.tray.setToolTip(app.name);
+    this.tray.setContextMenu(null);
 
+    this.tray.setToolTip(app.name);
     this.tray.on("right-click", () => this.update());
   }
 

@@ -40,16 +40,11 @@ export async function update() {
   }
 }
 
-autoUpdater.on("error", error => {
+autoUpdater.on("error", (error: any) => {
   errHandler(error);
 });
 
 function updateTray(reason: string) {
-  console.log(
-    (autoUpdater.autoDownload ? "[A/" : "[M/") +
-      "UPDATER] - " +
-      reason.toUpperCase()
-  );
   updateProcess = reason;
   trayManager.update();
 }
@@ -61,7 +56,7 @@ function errHandler(error: any) {
   } else {
     console.log(
       "An error occured while updating " +
-        (autoUpdater.autoDownload ? "[AUTO] :" : "[MANUAL] :"),
+      (autoUpdater.autoDownload ? "[AUTO] :" : "[MANUAL] :"),
       error ? (error.stack || error).toString() : "unknown"
     );
   }
