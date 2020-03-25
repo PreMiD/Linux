@@ -7,5 +7,3 @@ dist
 
 src/yarn.lock
 src/package.json
-
-*.js
