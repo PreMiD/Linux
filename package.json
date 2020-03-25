@@ -1,74 +1,77 @@
 {
-  "name": "premid",
-  "productName": "PreMiD",
-  "author": "Florian 'Timeraa' Metz <me@timeraa.dev> (https://github.com/timeraa)",
-  "contributors": [
-    "Jack 'DooMLorD' W. <doomlordcs@gmail.com> (https://github.com/doomlerd)"
-  ],
-  "description": "Discord Rich Presence for web services",
-  "version": "2.2.15",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/PreMiD/Linux.git"
-  },
-  "bugs": {
-    "url": "https://github.com/PreMiD/Linux/issues"
-  },
-  "homepage": "https://premid.app",
-  "license": "MPL-2.0",
-  "scripts": {
-    "init": "tsc && devScript --copyOnly",
-    "start": "electron dist/app/.",
-    "dev": "devScript",
-    "dist": "tsc && devScript --copyOnly && cd dist/app/ && yarn install",
-    "build": "electron-builder --project ./dist/app/",
-    "build:appimage": "electron-builder --project ./dist/app/ build -l AppImage --x64 -p onTagOrDraft",
-    "build:n-appimage": "electron-builder --project ./dist/app/ build -l AppImage --x64 -p never"
-  },
-  "build": {
-    "appId": "com.PreMiD.app",
-    "copyright": "PreMiD Org",
-    "linux": {
-      "maintainer": "Jack 'DooMLorD' W. <doomlordcs@gmail.com> (https://github.com/doomlerd)",
-      "category": "Utility",
-      "artifactName": "${productName}.${ext}",
-      "icon": "assets/appIcon.icns",
-      "target": [
-        "tar.gz",
-        "deb",
-        "rpm"
-      ],
-      "extraFiles": [
-        "assets/premid.desktop",
-        "assets/appIcon.png"
-      ]
-    },
-    "publish": [
-      {
-        "provider": "github",
-        "owner": "PreMiD",
-        "repo": "Linux",
-        "vPrefixedTagName": true,
-        "releaseType": "release"
-      }
-    ]
-  },
-  "devDependencies": {
-    "@timeraa/devscript": "Timeraa/DevScript",
-    "@types/auto-launch": "5.0.1",
-    "@types/discord-rpc": "3.0.2",
-    "@types/node": "13.9.3",
-    "@types/socket.io": "2.1.4",
-    "electron": "8.2.0",
-    "electron-builder": "22.4.1",
-    "typescript": "3.8.3"
-  },
-  "dependencies": {
-    "auto-launch": "5.0.5",
-    "discord-rpc": "github:discordjs/RPC",
-    "electron-store": "5.1.1",
-    "electron-updater": "4.2.5",
-    "socket.io": "2.3.0",
-    "source-map-support": "0.5.16"
-  }
+	"name": "premid",
+	"productName": "PreMiD",
+	"author": "Florian 'Timeraa' Metz <me@timeraa.dev> (https://github.com/timeraa)",
+	"contributors": [
+		"Jack 'DooMLorD' W. <doomlordcs@gmail.com> (https://github.com/doomlerd)"
+	],
+	"description": "Discord Rich Presence for web services",
+	"version": "2.2.15",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/PreMiD/Linux.git"
+	},
+	"bugs": {
+		"url": "https://github.com/PreMiD/Linux/issues"
+	},
+	"homepage": "https://premid.app",
+	"license": "MPL-2.0",
+	"scripts": {
+		"init": "tsc && devScript --copyOnly",
+		"start": "electron dist/app/.",
+		"dev": "devScript",
+		"dist": "tsc && devScript --copyOnly && cd dist/app/ && yarn install",
+		"build": "electron-builder --project ./dist/app/",
+		"build:appimage": "electron-builder --project ./dist/app/ build -l AppImage --x64 -p onTagOrDraft",
+		"build:n-appimage": "electron-builder --project ./dist/app/ build -l AppImage --x64 -p never"
+	},
+	"build": {
+		"appId": "com.PreMiD.app",
+		"copyright": "PreMiD Org",
+		"linux": {
+			"maintainer": "Jack 'DooMLorD' W. <doomlordcs@gmail.com> (https://github.com/doomlerd)",
+			"category": "Utility",
+			"artifactName": "${productName}.${ext}",
+			"icon": "assets/appIcon.icns",
+			"target": [
+				"tar.gz",
+				"deb",
+				"rpm"
+			],
+			"extraFiles": [
+				"assets/premid.desktop",
+				"assets/appIcon.png"
+			]
+		},
+		"publish": [
+			{
+				"provider": "github",
+				"owner": "PreMiD",
+				"repo": "Linux",
+				"vPrefixedTagName": true,
+				"releaseType": "release"
+			}
+		]
+	},
+	"devDependencies": {
+		"@timeraa/devscript": "Timeraa/DevScript",
+		"@types/auto-launch": "5.0.1",
+		"@types/discord-rpc": "3.0.2",
+		"@types/node": "13.9.3",
+		"@types/socket.io": "2.1.4",
+		"@typescript-eslint/eslint-plugin": "2.25.0",
+		"@typescript-eslint/parser": "2.25.0",
+		"electron": "8.2.0",
+		"electron-builder": "22.4.1",
+		"eslint": "6.8.0",
+		"typescript": "3.8.3"
+	},
+	"dependencies": {
+		"auto-launch": "5.0.5",
+		"discord-rpc": "github:discordjs/RPC",
+		"electron-store": "5.1.1",
+		"electron-updater": "4.2.5",
+		"socket.io": "2.3.0",
+		"source-map-support": "0.5.16"
+	}
 }

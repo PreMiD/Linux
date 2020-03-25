@@ -1,14 +1,11 @@
 node_modules
-out
 dist
-tmp
 
 .vscode
 .env
+*.log
 
-src/package-lock.json
 src/yarn.lock
 src/package.json
 
-*.app
 *.js

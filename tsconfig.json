@@ -1,18 +1,22 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
-    "target": "es2018",
-    "moduleResolution": "node",
-    "outDir": "dist/app",
-    "removeComments": true,
-    "esModuleInterop": true,
-    "inlineSourceMap": true,
-    "inlineSources": true,
-    "sourceRoot": "/",
-    "skipLibCheck": true,
-    "noUnusedParameters": true,
-    "noUnusedLocals": true
-  },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules"]
+	"compilerOptions": {
+		"module": "commonjs",
+		"target": "es2018",
+		"moduleResolution": "node",
+		"outDir": "dist/app",
+		"removeComments": true,
+		"esModuleInterop": true,
+		"inlineSourceMap": true,
+		"inlineSources": true,
+		"sourceRoot": "/",
+		"skipLibCheck": true,
+		"noUnusedParameters": true,
+		"noUnusedLocals": true
+	},
+	"include": [
+		"src/**/*"
+	],
+	"exclude": [
+		"node_modules"
+	]
 }

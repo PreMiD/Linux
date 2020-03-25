@@ -1,0 +1,17 @@
+node_modules
+dist
+
+.vscode
+.npmrc
+*.log
+yarn.lock
+
+src/assets
+tsconfig.json
+package.json
+*.d.ts
+
+LICENSE
+CODEOWNERS
+CODE_OF_CONDUCT.md
+README.md
