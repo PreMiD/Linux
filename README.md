@@ -55,6 +55,12 @@
     <td>Not recommended, not beginner-friendly and doesn't auto update.</td>
   </tr>
   <tr>
+    <td>Gentoo</td>
+    <td>Overlays</td>
+    <td>Add the overlay using layman:<br><code>layman -o https://raw.githubusercontent.com/apriluwu/gentoo-overlay/master/overlay.xml -f -a apriluwu</code><br><br>Install via portage:<br><code>emerge -av app-misc/premid</code></td>
+    <td>The install showen uses layman, it is in the official repositories through <code>app-portage/layman</code><br><br>Note: to get updates you will have to sync the overlay every one and a while, you can do this with: <code>layman -S</code></td>
+  </tr>
+  <tr>
     <td>Others</td>
     <td>-</td>
     <td>-</td>
