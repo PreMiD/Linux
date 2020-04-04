@@ -1,8 +1,28 @@
 [Desktop Entry]
+Type=Application
 Name=PreMiD
-GenericName=PreMiD
+GenericName=Discord RPC
 Comment=Discord Rich Presence for web services
+Icon=premid
 Exec=/usr/bin/premid
 Terminal=false
-Type=Application
-Icon=premid
+Actions=StoreURL;ContributorsURL;Debug;Kill;
+
+[Desktop Action StoreURL]
+Type=Link
+URL=https://premid.app/store
+Name=Presence Store
+
+[Desktop Action ContributorsURL]
+Type=Link
+URL=https://premid.app/contributors
+Name=Acknowledgments
+
+[Desktop Action Debug]
+Exec=/usr/bin/premid
+Terminal=true
+Name=Open in Terminal
+
+[Desktop Action Kill]
+Exec=killall -3 premid
+Name=Quit
