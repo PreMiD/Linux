@@ -24,6 +24,8 @@ jobs:
           yarn run dist
       - name: Building
         run: yarn run build
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish
         run: |
           curl -T ./dist/app/dist/${{ steps.info.outputs.productName }}.deb -udoomlerd:${{ secrets.BT_KEY }} "https://api.bintray.com/content/premid/debian-ubuntu/premid/${{ steps.info.outputs.version }}-${{ steps.info.outputs.timestamp }}/pool/nightly/p/premid_${{ steps.info.outputs.version }}-${{ steps.info.outputs.timestamp }}_amd64.deb;deb_distribution=nightly;deb_component=main;deb_architecture=amd64;publish=1"
@@ -32,6 +34,8 @@ jobs:
         run: |
           jq -c '.productName = "PreMiD Portable"' ./dist/app/package.json > tmp.$$.json && mv tmp.$$.json ./dist/app/package.json
           yarn run build:n-appimage
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
@@ -62,6 +66,8 @@ jobs:
           yarn run dist
       - name: Building
         run: yarn run build
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish
         run: |
           curl -T ./dist/app/dist/${{ steps.info.outputs.productName }}.deb -udoomlerd:${{ secrets.BT_KEY }} "https://api.bintray.com/content/premid/debian-ubuntu/premid/${{ steps.info.outputs.version }}/pool/stable/p/premid_${{ steps.info.outputs.version }}_amd64.deb;deb_distribution=stable;deb_component=main;deb_architecture=amd64;publish=1"
