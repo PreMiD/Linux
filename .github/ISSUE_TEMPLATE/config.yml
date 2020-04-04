@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Service request
+    url: https://github.com/PreMiD/Presences/issues/new?template=service_request.md
+    about: Suggest Rich Presence support for a website
+  - name: Official Discord server
+    url: https://discord.premid.app
+    about: Please use our ticket system for urgent requests!
