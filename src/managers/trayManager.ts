@@ -13,7 +13,7 @@ export class TrayManager {
     this.tray.setToolTip(app.name);
     
     this.update();
-    this.tray.on("right-click", () => this.update());
+    this.tray.on("click", () => this.update());
   }
 
   update() {
