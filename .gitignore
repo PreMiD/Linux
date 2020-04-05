@@ -1,9 +1,18 @@
+# local dist files
 node_modules
 dist
-
-.vscode
-.env
-*.log
-
 src/yarn.lock
 src/package.json
+
+# MacOS-generated files
+.DS_Store
+
+# local VSCode files
+.vscode
+.history
+
+# Yarn logs
+*.log
+
+# Super secure files
+.env

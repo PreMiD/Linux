@@ -1,22 +1,18 @@
 {
-	"compilerOptions": {
-		"module": "CommonJS",
-		"target": "ES2020",
-		"moduleResolution": "node",
-		"outDir": "dist/app",
-		"removeComments": true,
-		"esModuleInterop": true,
-		"inlineSourceMap": true,
-		"inlineSources": true,
-		"sourceRoot": "/",
-		"skipLibCheck": true,
-		"noUnusedParameters": true,
-		"noUnusedLocals": true
-	},
-	"include": [
-		"src/**/*"
-	],
-	"exclude": [
-		"node_modules"
-	]
+  "compilerOptions": {
+    "module": "CommonJS",
+    "target": "ES2020",
+    "moduleResolution": "node",
+    "outDir": "dist/app",
+    "removeComments": true,
+    "esModuleInterop": true,
+    "inlineSourceMap": true,
+    "inlineSources": true,
+    "sourceRoot": "/",
+    "skipLibCheck": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }

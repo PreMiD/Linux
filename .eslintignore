@@ -3,7 +3,7 @@ dist
 
 .vscode
 .npmrc
-*.log
+*.log 
 yarn.lock
 
 src/assets
