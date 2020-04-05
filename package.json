@@ -45,6 +45,7 @@
       ],
       "desktop": {
         "GenericName": "Discord RPC",
+        "Categories": "Utility;",
         "Actions": "StoreURL;ContributorsURL;Debug;Kill;\n\n[Desktop Action StoreURL]\nType=Link\nURL=https://premid.app/store\nName=Presence Store\n\n[Desktop Action ContributorsURL]\nType=Link\nURL=https://premid.app/contributors\nName=Acknowledgments\n\n[Desktop Action Debug]\nTerminal=true\nName=Open in Terminal\n\n[Desktop Action Kill]\nExec=killall -3 premid\nName=Quit"
       }
     },

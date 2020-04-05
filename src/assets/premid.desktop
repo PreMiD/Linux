@@ -7,6 +7,7 @@ Icon=premid
 Exec=/usr/bin/premid
 Terminal=false
 Actions=StoreURL;ContributorsURL;Debug;Kill;
+Categories=Utility;
 
 [Desktop Action StoreURL]
 Type=Link
@@ -19,7 +20,6 @@ URL=https://premid.app/contributors
 Name=Acknowledgments
 
 [Desktop Action Debug]
-Exec=/usr/bin/premid
 Terminal=true
 Name=Open in Terminal
 
