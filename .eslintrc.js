@@ -22,7 +22,7 @@ module.exports = {
     quotes: ["error", "double"],
     semi: ["error", "always"],
     "comma-dangle": ["error", "never"],
-    "linebreak-style": ["off", "windows"],
+    "linebreak-style": "off",
     "no-console": "off"
   }
 };
