@@ -1,4 +1,5 @@
 <img src=".github/mLogo.png" width="150" height="150" align="left"></img>
+
 <h1>PreMiD <code>--linux</code></h1>
 Discord Rich Presence for web services!
 <br><br>
@@ -14,7 +15,7 @@ Discord Rich Presence for web services!
   - [Support](#support)
   - [Credits](#credits)
   - [License](#license)
-- [Snapcraft] (TL;DR : _never_ ™️)
+- **[Snapcraft](#snapcraft)** (TL;DR : _never_ ™️)
 - **[Portable AppImage](#appimage)** (_RECOMMENDED_)
   - [Installation instructions](#appimageinstall)
   - [Additional notes](#appimagenotes)
@@ -91,6 +92,15 @@ Thanks to :
 ### License
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FPreMiD%2FLinux.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FPreMiD%2FLinux?ref=badge_large)
+
+<img src=".github/snapcraft.png" width="100" height="100" align="right"></img>
+<a name="snapcraft"></a>
+
+## Snapcraft
+
+Probably never, since Snap's nature blocks PreMiD from reaching Discord and the extension properly,</br>
+It would be appreciated if someone could do it though, any ideas or PRs are welcome.</br>
+P.S.: classic confinement doesn't work either so don't bother making a suggestion about it.
 
 <img src=".github/appimage.png" width="100" height="100" align="right"></img>
 <a name="appimage"></a>
