@@ -1,9 +1,40 @@
-<div align="center">
-  <img src="https://avatars3.githubusercontent.com/u/46326568" width="128px" style="max-width:100%;">
-  <h1>PreMiD <code>--linux</code></h1>
-</div>
+<img src=".github/mLogo.png" width="150" height="150" align="left"></img>
+<h1>PreMiD <code>--linux</code></h1>
+Discord Rich Presence for web services!
+<br><br>
 
-# Discord Rich Presence for web services!
+## Table of Contents
+
+- **[About](#about)**
+  - [Stats](#stats)
+  - [Requirements](#requirements)
+  - Examples (soon)
+  - Building (soon)
+  - [Support](#support)
+  - [Credits](#credits)
+  - [License](#license)
+- **[Snapcraft](#snapcraft)** (TL;DR : _never_ ™️)
+- **[Portable AppImage](#appimage)** (_RECOMMENDED_)
+  - [Installation instructions](#appimageinstall)
+  - [Additional notes](#appimagenotes)
+- **Red Hat Enterprise Linux (RHEL) based distributions** (soon, use [this](#appimage) for now)
+- **Debian and Ubuntu based distributions** (soon, use [this](#appimage) for now)
+- **[Arch Linux based distributions](#arch)**
+  - [Installation instructions](#archinstall)
+  - [Additional notes](#archnotes)
+- **[Gentoo Linux](#gentoo)**
+  - [Installation instructions](#gentooinstall)
+  - [Additional notes](#gentoonotes)
+
+<a name="about"></a>
+
+## About
+
+**PreMiD** is a simple, configurable utility that uses Discord's RP ( Rich Presence ) library which allows you to show what you're doing on the web ( and a few programs ) in your Discord profile as **playing status**.
+
+<a name="stats"></a>
+
+### Stats
 
 <table>
   <tr>
@@ -18,59 +49,23 @@
   </tr>
 </table>
 
-## Installing
+<a name="requirements"></a>
 
-<table>
-  <tr>
-    <th>Supported Linux Distribution</th>
-    <th>Method</th>
-    <th>Installing</th>
-    <th>Additional Notes</th>
-  </tr>
-  <tr>
-    <td>All</td>
-    <td>Portable <a href="https://github.com/PreMiD/Linux/releases/latest">AppImage</a></td>
-    <td>
-        <code>wget https://github.com/PreMiD/Linux/releases/latest/download/PreMiD-Portable.AppImage && chmod +x PreMiD*.AppImage</code><br>run <code>./PreMiD*.AppImage</code> afterwards or just double-click it
-    </td>
-    <td><b>This is the recommended package</b> to use, either if you want to try PreMiD or just don't want to install it ( or maybe put it in a USB stick ), it's always up to date but <i>doesn't auto-launch at the system startup</i>, so if you get tired of having to open it each time, use the other methods bellow ( according to your Linux distribution )</td>
-  </tr>
-  <tr>
-    <td rowspan="5">Arch Linux</td>
-    <td rowspan="5"><a href="https://aur.archlinux.org/packages/premid">Arch User Repository</a></td>
-    <td>Using yay :<br><code>yay -S premid</code><br></td>
-    <td rowspan="4">If your distro uses pacman, then you have to install one of the helpers first. If you don't have any, Yay is recommended, run :<br><code>git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si</code><br>then <code>yay -S premid</code>, as instructed in the previous column.<br><br>Other AUR/Pacman helpers work as well, although each one's functionality is different so you may face issues while using them.</td>
-  </tr>
-  <tr>
-    <td>Using pakku :<br><code>pakku -S premid</code></td>
-  </tr>
-  <tr>
-    <td>Using pacaur :<br><code>pacaur -S premid</code></td>
-  </tr>
-  <tr>
-    <td>Using trizen :<br><code>trizen -S premid</code></td>
-  </tr>
-  <tr>
-    <td><a href="https://wiki.archlinux.org/index.php/Arch_User_Repository#Installing_packages">Manually</a></td>
-    <td>Not recommended, not beginner-friendly and doesn't auto update.</td>
-  </tr>
-  <tr>
-    <td>Gentoo</td>
-    <td>Overlays</td>
-    <td>Add the overlay using layman:<br><code>layman -S && layman -a apriluwu</code><br><br>Install via portage:<br><code>emerge -av app-misc/premid</code></td>
-    <td>The install showen uses layman, it is in the official repositories through <code>app-portage/layman</code><br><br>Note: to get updates you will have to sync the overlay every one and a while, you can do this with: <code>layman -S</code></td>
-  </tr>
-  <tr>
-    <td>Others</td>
-    <td>-</td>
-    <td>-</td>
-    <td>Soon (TM), use the AppImage for now</td>
-  </tr>
-</table>
+### Requirements
 
-## Troubleshooting
+Technically every distribution that can run Discord's [official](https://discordapp.com/download) **app** ( not the web or the snap version ) can run PreMiD too;</br>
+As you may have noticed in the recent years, some Linux distributions started dropping support for the 32-bit (ia32/i686/i386/x86) architectures, and as a result, we did too. You can, however, try to build the app yourself if you desperately need to use it on a 32-bit distribution.</br>
+Since we currently use Electron as an engine (Discord does too!), its requirements also apply to this app :
 
-Create a #support ticket in our Discord server :
+- Ubuntu ≥ 12.04
+- Fedora ≥ 21
+- Debian ≥ 8
+
+It is unknown whether older versions of other distributions support it, so just keep your distribution updated and use **LTS (Long-Term Support)** releases if your distribution offers them, as they're more stable (avoid alpha releases).
+
+<a name="support"></a>
+
+### Support
 
 <div>
   <a target="_blank" href="https://discord.gg/WvfVZ8T" title="Join our Discord!">
@@ -78,6 +73,139 @@ Create a #support ticket in our Discord server :
   </a>
 </div>
 
-## License
+<a name="credits"></a>
+
+### Credits
+
+Thanks to :
+
+- @nattadasu, @Rubensei, @Cairo2k18, zany130, Immanuel D, Friskytrash, Alexandre (and few other guys whom I forgot their names) for providing feedback on nightly releases.
+- @apriluwu for maintaining the Gentoo builds
+- @SlimShadyIAm and naka for formerly maintaining the Arch User Repository packages
+- The Electron community for various packages
+- Anyone else who has ever contributed to the project in any way.
+
+<a name="license"></a>
+
+### License
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FPreMiD%2FLinux.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FPreMiD%2FLinux?ref=badge_large)
+
+<img src=".github/snapcraft.png" width="130" height="130" align="right"></img>
+<a name="snapcraft"></a>
+
+## Snapcraft
+
+Probably never, for technical reasons... Unless someone makes a PR for it.
+
+<img src=".github/appimage.png" width="130" height="130" align="right"></img>
+<a name="appimage"></a>
+
+## Portable AppImage
+
+The AppImage package is the recommended one if Discord works for you but other PreMiD packages (.deb, .rpm, etc) don't.
+
+<a name="appimageinstall"></a>
+
+### Installation instructions
+
+```bash
+wget https://git.io/JvAse && chmod a+x PreMiD*.AppImage
+```
+
+```bash
+# Just double-click it or run
+./PreMiD*.AppImage
+```
+
+<a name="appimagenotes"></a>
+
+### Additional notes
+
+Either if you want to try PreMiD or just don't want to install it, this one's the best, it's always up to date but _DOESN'T AUTO-START WITH THE SYSTEM!_</br>If you get tired of having to open it each time, use the other packages (according to your distribution).
+
+<a name="arch"></a>
+<img src=".github/iusearchbtw.svg" width="130" height="130" align="right"></img>
+
+## Arch Linux based distributions
+
+Uses [Arch User Repository](https://aur.archlinux.org/packages/premid);</br>
+Supported distributions are _itself_, Manjaro, Anarchy, Artix, Arco, ArchLabs, Endeavour, Archman, BlackArch, Liri OS and [every one that supports installing from AUR](https://wiki.archlinux.org/index.php/Arch-based_distributions#Active).
+
+<a name="archinstall"></a>
+
+### Installation instructions
+
+```bash
+# Using yay (recommended)
+yay -S premid
+```
+
+```bash
+# Using pakku
+pakku -S premid
+```
+
+```bash
+# Using trizen
+trizen -S premid
+```
+
+```bash
+# Using pacaur
+pacaur -S premid
+```
+
+```bash
+# ... you get the point
+```
+
+or manually from the [Arch User Repository](https://aur.archlinux.org/packages/premid) if you know what you're doing.
+
+<a name="archnotes"></a>
+
+### Additional notes
+
+If your distro uses pacman, then you have to install one of the helpers first. If you don't have any, Yay is recommended, run :
+
+```bash
+git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
+```
+
+```bash
+yay -S premid
+```
+
+Other AUR/Pacman helpers work as well, although each one's functionality is different so you may face issues while using them.
+
+<img src=".github/gentoo.svg" width="130" height="130" align="right"></img>
+<a name="gentoo"></a>
+
+## Gentoo Linux
+
+Same applies to its derivatives, such as ColverOS, Clip-OS, Sabayon, Bicom Systems PBXware, [etc](https://wiki.gentoo.org/wiki/Distributions_based_on_Gentoo#Active_projects).
+
+<a name="gentooinstall"></a>
+
+### Installation instructions
+
+```bash
+# Add the overlay using layman
+layman -S && layman -a apriluwu
+```
+
+```bash
+# Install via portage
+emerge -av app-misc/premid
+```
+
+<a name="gentoonotes"></a>
+
+### Additional notes
+
+The shown install command uses layman, it is in the official repositories through `app-portage/layman`.<br>
+To get updates you will have to sync the overlay from time to time, you can do this with
+
+```bash
+layman -S
+```
