@@ -9,11 +9,12 @@ Discord Rich Presence for web services!
   - [Stats](#stats)
   - [Requirements](#requirements)
   - Examples (soon)
+  - FAQs (soon)
   - Building (soon)
   - [Support](#support)
   - [Credits](#credits)
   - [License](#license)
-- **[Snapcraft](#snapcraft)** (TL;DR : _never_ ™️)
+- [Snapcraft] (TL;DR : _never_ ™️)
 - **[Portable AppImage](#appimage)** (_RECOMMENDED_)
   - [Installation instructions](#appimageinstall)
   - [Additional notes](#appimagenotes)
@@ -91,14 +92,7 @@ Thanks to :
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FPreMiD%2FLinux.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FPreMiD%2FLinux?ref=badge_large)
 
-<img src=".github/snapcraft.png" width="130" height="130" align="right"></img>
-<a name="snapcraft"></a>
-
-## Snapcraft
-
-Probably never, for technical reasons... Unless someone makes a PR for it.
-
-<img src=".github/appimage.png" width="130" height="130" align="right"></img>
+<img src=".github/appimage.png" width="100" height="100" align="right"></img>
 <a name="appimage"></a>
 
 ## Portable AppImage
@@ -125,7 +119,7 @@ wget https://git.io/JvAse && chmod a+x PreMiD*.AppImage
 Either if you want to try PreMiD or just don't want to install it, this one's the best, it's always up to date but _DOESN'T AUTO-START WITH THE SYSTEM!_</br>If you get tired of having to open it each time, use the other packages (according to your distribution).
 
 <a name="arch"></a>
-<img src=".github/iusearchbtw.svg" width="130" height="130" align="right"></img>
+<img src=".github/iusearchbtw.svg" width="100" height="100" align="right"></img>
 
 ## Arch Linux based distributions
 
@@ -178,7 +172,7 @@ yay -S premid
 
 Other AUR/Pacman helpers work as well, although each one's functionality is different so you may face issues while using them.
 
-<img src=".github/gentoo.svg" width="130" height="130" align="right"></img>
+<img src=".github/gentoo.svg" width="100" height="100" align="right"></img>
 <a name="gentoo"></a>
 
 ## Gentoo Linux
