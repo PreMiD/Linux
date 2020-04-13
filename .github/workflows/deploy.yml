@@ -19,10 +19,12 @@ jobs:
           echo "::set-output name=productName::$(node -p -e "require('./package.json').productName")"
           echo "::set-output name=version::$(node -p -e "require('./package.json').version")"
       - name: Install Dependencies
-        run: |
-          yarn install
-          yarn run dist
-      - name: Building
+        run: yarn
+      - name: Compile TypeScript
+        run: yarn run init
+      - name: Install Distributable Modules
+        run: yarn run dist
+      - name: Build Packages
         run: yarn run build
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -61,10 +63,12 @@ jobs:
           echo "::set-output name=productName::$(node -p -e "require('./package.json').productName")"
           echo "::set-output name=version::$(node -p -e "require('./package.json').version")"
       - name: Install Dependencies
-        run: |
-          yarn install
-          yarn run dist
-      - name: Building
+        run: yarn
+      - name: Compile TypeScript
+        run: yarn run init
+      - name: Install Distributable Modules
+        run: yarn run dist
+      - name: Build Packages
         run: yarn run build
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
