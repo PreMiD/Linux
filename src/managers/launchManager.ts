@@ -11,10 +11,10 @@ let autoLaunch = new AutoLaunch({
 /**
  * Updates autoLaunch
  */
-export async function update() {
+export function update() {
   //* If app not packaged return
   //* Either enable/disable autolaunch
-  if (!app.isPackaged || (app.isPackaged && process.env.APPIMAGE !== null)) {
+  if (!app.isPackaged || (app.isPackaged && app.name.includes("Portable"))) {
     //* Return
     console.log(
       (app.isPackaged

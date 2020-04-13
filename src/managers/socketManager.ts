@@ -21,7 +21,7 @@ export let connected: boolean = false;
 export function init() {
   return new Promise((resolve) => {
     //* Create server
-    //* create SocketIo server, don't server client
+    //* create SocketIo server, don't serve the client
     //* Try to listen to port 3020
     //* If that fails/some other error happens run socketError
     //* If someone connects to socket socketConnection
@@ -29,8 +29,8 @@ export function init() {
     io = socketIo(server, { serveClient: false });
     server.listen(3020, () => {
       //* Resolve promise
-      resolve();
       console.log("Opened socket");
+      resolve();
     });
     server.on("error", socketError);
     io.on("connection", socketConnection);
@@ -47,7 +47,9 @@ function socketConnection(cSocket: socketIo.Socket) {
   //* Once socket user disconnects run cleanup
   console.log("Socket connection");
   socket = cSocket;
-  getDiscordUser().then((user) => socket.emit("discordUser", user));
+  getDiscordUser()
+    .then((user) => socket.emit("discordUser", user))
+    .catch(() => socket.emit("discordUser", null));
   socket.on("setActivity", setActivity);
   socket.on("clearActivity", clearActivity);
   socket.on("settingUpdate", updateSettings);
@@ -57,23 +59,22 @@ function socketConnection(cSocket: socketIo.Socket) {
   );
   socket.once("disconnect", () => {
     connected = false;
-    trayManager.update();
+    if(trayManager && trayManager.tray) trayManager.update();
     //* Destroy all open RPC connections
     console.log("Socket disconnected.");
     rpcClients.forEach((c) => c.destroy());
   });
   connected = true;
-  trayManager.update();
+  if(trayManager && trayManager.tray) trayManager.update();
 }
 
 app.on("quit", () => {
-  if (socket && socket.connected) socket.disconnect(true);
+  if (socket && socket.connected) server.close();
 });
 
 //* Runs on socket errors
-function socketError(e: any) {
+async function socketError(e: any) {
   //* If port in use
-  console.log(`Socket error :\n${e.message}`);
   if (e.code === "EADDRINUSE") {
     //* Focus app
     //* Show error dialog
@@ -83,6 +84,8 @@ function socketError(e: any) {
       "Oh noes! Port error...",
       `${app.name} could not bind to port ${e.port}.\nIs ${app.name} running already?`
     );
-    app.quit();
+    app.exit();
+  } else {
+    console.log(`Socket error :\n${e.message}`);
   }
 }

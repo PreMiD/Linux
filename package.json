@@ -1,10 +1,7 @@
 {
   "name": "premid",
   "productName": "PreMiD",
-  "author": "Florian 'Timeraa' Metz <me@timeraa.dev> (https://github.com/timeraa)",
-  "contributors": [
-    "Jack 'DooMLorD' W. <doomlordcs@gmail.com> (https://github.com/doomlerd)"
-  ],
+  "author": "Jack 'DooMLorD' W. <doomlordcs@gmail.com> (https://github.com/doomlerd)",
   "description": "Discord Rich Presence for web services",
   "version": "2.2.15",
   "repository": {
@@ -20,7 +17,7 @@
     "init": "tsc && devScript --copyOnly",
     "start": "electron dist/app/.",
     "dev": "devScript",
-    "dist": "tsc && devScript --copyOnly && cd dist/app/ && yarn install",
+    "dist": "cd dist/app/ && yarn install",
     "build": "electron-builder --project ./dist/app/ -p never",
     "build:appimage": "electron-builder --project ./dist/app/ build -l AppImage --x64 -p onTagOrDraft",
     "build:n-appimage": "electron-builder --project ./dist/app/ build -l AppImage --x64 -p never"
@@ -29,7 +26,6 @@
     "appId": "com.PreMiD.app",
     "copyright": "PreMiD Org",
     "linux": {
-      "maintainer": "Jack 'DooMLorD' W. <doomlordcs@gmail.com> (https://github.com/doomlerd)",
       "category": "Utility",
       "artifactName": "${productName}.${ext}",
       "icon": "assets/appIcon.icns",
@@ -63,11 +59,11 @@
     "@timeraa/devscript": "Timeraa/DevScript",
     "@types/auto-launch": "5.0.1",
     "@types/discord-rpc": "3.0.2",
-    "@types/node": "13.11.0",
+    "@types/node": "13.11.1",
     "@types/socket.io": "2.1.4",
-    "@typescript-eslint/eslint-plugin": "2.26.0",
-    "@typescript-eslint/parser": "2.26.0",
-    "electron": "8.2.0",
+    "@typescript-eslint/eslint-plugin": "2.27.0",
+    "@typescript-eslint/parser": "2.27.0",
+    "electron": "8.2.1",
     "electron-builder": "22.4.1",
     "eslint": "6.8.0",
     "typescript": "3.8.3"

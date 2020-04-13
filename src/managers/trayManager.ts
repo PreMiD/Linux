@@ -11,7 +11,7 @@ export class TrayManager {
     this.tray = new Tray(join(__dirname, "../assets/tray/Icon@2x.png"));
     this.tray.setContextMenu(null);
     this.tray.setToolTip(app.name);
-    
+
     this.update();
     this.tray.on("click", () => this.update());
   }
@@ -43,7 +43,7 @@ export class TrayManager {
           click: () => checkForUpdate(),
           visible:
             app.isPackaged &&
-            process.env.APPIMAGE !== null &&
+            app.name.includes("Portable") &&
             (!updateProcess || (updateProcess && updateProcess === "standby"))
         },
         {
@@ -51,7 +51,7 @@ export class TrayManager {
           enabled: false,
           visible:
             app.isPackaged &&
-            process.env.APPIMAGE !== null &&
+            app.name.includes("Portable") &&
             updateProcess &&
             updateProcess === "installing"
         },
@@ -60,7 +60,7 @@ export class TrayManager {
           enabled: false,
           visible:
             app.isPackaged &&
-            process.env.APPIMAGE !== null &&
+            app.name.includes("Portable") &&
             updateProcess &&
             updateProcess === "checking"
         },
@@ -80,4 +80,8 @@ export class TrayManager {
   }
 }
 
-app.once("quit", () => trayManager.tray.destroy());
+app.once("quit", () => {
+  if (trayManager && trayManager.tray) {
+    trayManager.tray.destroy();
+  }
+});

@@ -2,7 +2,7 @@
 node_modules
 package-lock.json
 .npmrc
-dist 
+dist
 
 # Markdown files
 LICENSE

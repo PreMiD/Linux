@@ -69,9 +69,11 @@ class RPCClient {
 
   async destroy() {
     try {
-      console.log(`Destroy RPC client (${this.clientId})`);
-      this.client.clearActivity();
-      this.client.destroy();
+      if (this.clientReady) {
+        this.client.clearActivity();
+        this.client.destroy();
+        console.log(`Destroy RPC client (${this.clientId})`);
+      }
 
       rpcClients = rpcClients.filter(
         (client) => client.clientId !== this.clientId
@@ -111,10 +113,15 @@ export function clearActivity(clientId: string = undefined) {
 }
 
 export async function getDiscordUser() {
-  const user = await new Client({ transport: "ipc" }).login({
-    clientId: "503557087041683458"
+  return new Promise((resolve, reject) => {
+    const c = new Client({ transport: "ipc" });
+
+    c.login({
+      clientId: "503557087041683458"
+    })
+      .then(({ user }) => c.destroy().then(() => resolve(user)))
+      .catch(reject);
   });
-  return user.user;
 }
 
 app.once(
