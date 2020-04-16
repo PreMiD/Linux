@@ -16,7 +16,12 @@ import { trayManager } from "..";
 export let io: socketIo.Server;
 export let socket: socketIo.Socket;
 export let server: Server;
-export let connected: boolean = false;
+
+//* States :
+//* - Disconnected
+//* - Connected
+//* - Connecting
+export let connectionState: String = "Connecting";
 
 export function init() {
   return new Promise((resolve) => {
@@ -58,14 +63,14 @@ function socketConnection(cSocket: socketIo.Socket) {
     socket.emit("receiveVersion", app.getVersion().replace(/[\D]/g, ""))
   );
   socket.once("disconnect", () => {
-    connected = false;
-    if(trayManager && trayManager.tray) trayManager.update();
+    updateTray("Disconnected");
+    if (trayManager && trayManager.tray) trayManager.update();
     //* Destroy all open RPC connections
     console.log("Socket disconnected.");
     rpcClients.forEach((c) => c.destroy());
   });
-  connected = true;
-  if(trayManager && trayManager.tray) trayManager.update();
+  updateTray("Connected");
+  if (trayManager && trayManager.tray) trayManager.update();
 }
 
 app.on("quit", () => {
@@ -76,6 +81,7 @@ app.on("quit", () => {
 async function socketError(e: any) {
   //* If port in use
   if (e.code === "EADDRINUSE") {
+    updateTray("Disconnected");
     //* Focus app
     //* Show error dialog
     //* Exit app afterwards
@@ -87,5 +93,12 @@ async function socketError(e: any) {
     app.exit();
   } else {
     console.log(`Socket error :\n${e.message}`);
+  }
+}
+
+function updateTray(reason: string = "Connecting") {
+  if (!connectionState || (connectionState && connectionState !== reason)) {
+    connectionState = reason;
+    if (trayManager) trayManager.update();
   }
 }

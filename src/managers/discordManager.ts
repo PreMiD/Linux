@@ -1,5 +1,6 @@
 import { Client } from "discord-rpc";
 import { app } from "electron";
+import { trayManager } from "..";
 
 //* Import custom types
 /* eslint-disable no-unused-vars */
@@ -8,6 +9,12 @@ import PresenceData from "../../@types/PreMiD/PresenceData";
 
 //* Define Presence array
 export let rpcClients: Array<RPCClient> = [];
+
+//* States :
+//* - Disconnected
+//* - Connected
+//* - Connecting
+export let connectionState: String = "Connecting";
 
 class RPCClient {
   clientId: string;
@@ -24,6 +31,7 @@ class RPCClient {
     });
 
     this.client.once("ready", () => {
+      updateTray("Connected");
       this.clientReady = true;
       this.setActivity();
     });
@@ -31,14 +39,17 @@ class RPCClient {
     this.client.once(
       // @ts-ignore
       "disconnected",
-      () =>
-        (rpcClients = rpcClients.filter(
+      () => {
+        updateTray("Disconnected");
+        rpcClients = rpcClients.filter(
           (client) => client.clientId !== this.clientId
-        ))
+        );
+      }
     );
 
     this.client.login({ clientId: this.clientId }).catch(() => this.destroy());
 
+    updateTray("Connected");
     console.log(`Create RPC client (${this.clientId})`);
   }
 
@@ -53,6 +64,8 @@ class RPCClient {
       presenceData.presenceData.largeImageText.includes("PreMiD")
     )
       presenceData.presenceData.largeImageText = `PreMiD 🐧 v${app.getVersion()}`;
+
+    updateTray("Connected");
 
     this.client
       .setActivity(presenceData.presenceData)
@@ -113,6 +126,7 @@ export function clearActivity(clientId: string = undefined) {
 }
 
 export async function getDiscordUser() {
+  updateTray("Connecting");
   return new Promise((resolve, reject) => {
     const c = new Client({ transport: "ipc" });
 
@@ -128,3 +142,10 @@ app.once(
   "will-quit",
   async () => await Promise.all(rpcClients.map((c) => c.destroy()))
 );
+
+function updateTray(reason: string = "Connecting") {
+  if (!connectionState || (connectionState && connectionState !== reason)) {
+    connectionState = reason;
+    if (trayManager) trayManager.update();
+  }
+}

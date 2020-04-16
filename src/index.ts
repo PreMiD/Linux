@@ -11,10 +11,8 @@ let singleInstanceLock: boolean;
 if (app.isPackaged) singleInstanceLock = app.requestSingleInstanceLock();
 export let trayManager: TrayManager;
 
-//* When app is ready
-export let updateCheckerInterval = null;
-app.whenReady().then(async () => {
-  if (!singleInstanceLock) return app.exit();
+app.on("ready", async () => {
+  if (!singleInstanceLock && app.isPackaged) return app.exit();
 
   trayManager = new TrayManager();
 
@@ -23,7 +21,7 @@ app.whenReady().then(async () => {
 
   if (app.isPackaged && app.name.includes("Portable")) {
     await checkForUpdate(true);
-    updateCheckerInterval = setInterval(() => {
+    setInterval(() => {
       checkForUpdate(true);
     }, 15 * 1000 * 60);
   }

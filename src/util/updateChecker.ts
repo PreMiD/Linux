@@ -44,9 +44,11 @@ autoUpdater.on("error", (error: any) => {
   errHandler(error);
 });
 
-function updateTray(reason: string) {
-  updateProcess = reason;
-  trayManager.update();
+function updateTray(reason: string = "standby") {
+  if (!updateProcess || (updateProcess && updateProcess !== reason)) {
+    updateProcess = reason;
+    if (trayManager) trayManager.update();
+  }
 }
 
 // Temporarily
