@@ -114,7 +114,7 @@ The AppImage package is the recommended one if Discord works for you but other P
 ### Installation instructions
 
 ```bash
-wget https://git.io/JvAse && chmod a+x PreMiD*.AppImage
+wget https://github.com/PreMiD/Linux/releases/latest/download/PreMiD-Portable.AppImage && chmod a+x PreMiD*.AppImage
 ```
 
 ```bash
