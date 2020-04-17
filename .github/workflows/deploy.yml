@@ -46,8 +46,8 @@ jobs:
           files: |
             ./dist/app/dist/${{ steps.info.outputs.productName }}.tar.gz
             ./dist/app/dist/${{ steps.info.outputs.productName }} Portable.AppImage
-          tag_name: v${{ steps.info.outputs.version }}.${{ steps.info.outputs.timestamp }}
-          name: Nightly v${{ steps.info.outputs.version }}.${{ steps.info.outputs.timestamp }}
+          tag_name: v${{ steps.info.outputs.version }}-${{ steps.info.outputs.timestamp }}
+          name: Nightly v${{ steps.info.outputs.version }}-${{ steps.info.outputs.timestamp }}
           draft: false
           prerelease: true
         env:
