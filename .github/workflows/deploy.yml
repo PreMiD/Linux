@@ -26,7 +26,7 @@ jobs:
         run: yarn run dist
       - name: Build Packages
         run: |
-          jq -c '.version = "${{ steps.info.outputs.version }}.${{ steps.info.outputs.timestamp }}"' ./dist/app/package.json > tmp.$$.json && mv tmp.$$.json ./dist/app/package.json
+          jq -c '.version = "${{ steps.info.outputs.version }}-${{ steps.info.outputs.timestamp }}"' ./dist/app/package.json > tmp.$$.json && mv tmp.$$.json ./dist/app/package.json
           yarn run build
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
