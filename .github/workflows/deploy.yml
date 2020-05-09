@@ -2,6 +2,9 @@ name: CI
 on:
   repository_dispatch:
   push:
+    paths:
+      - '!*'
+      - 'src/**'
     branches:
       - master
 jobs:
