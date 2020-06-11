@@ -86,14 +86,15 @@
     defer-to-connect "^1.0.1"
 
 "@timeraa/devscript@Timeraa/DevScript":
-  version "1.0.4"
-  resolved "https://codeload.github.com/Timeraa/DevScript/tar.gz/4b11f60572409704ddb2bbbe0483050f0e429495"
+  version "1.0.8"
+  uid "5f896f5ad0b98ac36f8a85fe89485638ade5c00d"
+  resolved "https://codeload.github.com/Timeraa/DevScript/tar.gz/5f896f5ad0b98ac36f8a85fe89485638ade5c00d"
   dependencies:
     chalk "^4.0.0"
-    chokidar "^3.3.1"
+    chokidar "^3.4.0"
     fast-glob "^3.2.2"
-    fs-extra "^9.0.0"
-    typescript "^3.8.3"
+    fs-extra "^9.0.1"
+    typescript "^3.9.5"
 
 "@types/auto-launch@5.0.1":
   version "5.0.1"
@@ -561,7 +562,7 @@ chardet@^0.7.0:
   resolved "https://registry.yarnpkg.com/chardet/-/chardet-0.7.0.tgz#90094849f0937f2eedc2425d0d28a9e5f0cbad9e"
   integrity sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==
 
-chokidar@^3.3.1:
+chokidar@^3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.4.0.tgz#b30611423ce376357c765b9b8f904b9fba3c0be8"
   integrity sha512-aXAaho2VJtisB/1fg1+3nlLJqGOuewTzQpd/Tz0yTg2R0e4IGtshYvtjowyEumcBv2z+y4+kc75Mz7j5xJskcQ==
@@ -1242,10 +1243,10 @@ fs-extra@^8.1.0:
     jsonfile "^4.0.0"
     universalify "^0.1.0"
 
-fs-extra@^9.0.0:
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-9.0.0.tgz#b6afc31036e247b2466dc99c29ae797d5d4580a3"
-  integrity sha512-pmEYSk3vYsG/bF651KPUXZ+hvjpgWYw/Gc7W9NFUe3ZVLczKKWIij3IKpOrQcdw4TILtibFslZ0UmR8Vvzig4g==
+fs-extra@^9.0.0, fs-extra@^9.0.1:
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-9.0.1.tgz#910da0062437ba4c39fedd863f1675ccfefcb9fc"
+  integrity sha512-h2iAoN838FqAFJY2/qVpzFXy+EBxfVE220PalAqQLDVsFOHLJrZvut5puAbCdNv6WJk+B8ihI+k0c7JK5erwqQ==
   dependencies:
     at-least-node "^1.0.0"
     graceful-fs "^4.2.0"
@@ -2573,10 +2574,15 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@3.8.3, typescript@^3.8.3:
+typescript@3.8.3:
   version "3.8.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.8.3.tgz#409eb8544ea0335711205869ec458ab109ee1061"
   integrity sha512-MYlEfn5VrLNsgudQTVJeNaQFUAI7DkhnOjdpAp4T+ku1TfQClewlbSuTVHiA+8skNBgaf02TL/kLOvig4y3G8w==
+
+typescript@^3.9.5:
+  version "3.9.5"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.5.tgz#586f0dba300cde8be52dd1ac4f7e1009c1b13f36"
+  integrity sha512-hSAifV3k+i6lEoCJ2k6R2Z/rp/H3+8sdmcn5NrS3/3kE7+RyZXm9aqvxWqjEXHAd8b0pShatpcdMTvEdvAJltQ==
 
 unique-string@^2.0.0:
   version "2.0.0"
