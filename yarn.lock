@@ -115,6 +115,13 @@
   resolved "https://registry.yarnpkg.com/@types/discord-rpc/-/discord-rpc-3.0.3.tgz#1d8da2213881f34d5707f726ed38cc5776b7da8e"
   integrity sha512-4GCRutyJ1EoQV1If3hEnvorv+VHsrY8q5jPvfFT4LC8V7Xd47+zUkcjEhLGZX61OtDZUVg5C1zGaOvmECPQChA==
 
+"@types/engine.io@*":
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/@types/engine.io/-/engine.io-3.1.4.tgz#3d9472711d179daa7c95c051e50ad411e18a9bdc"
+  integrity sha512-98rXVukLD6/ozrQ2O80NAlWDGA4INg+tqsEReWJldqyi2fulC9V7Use/n28SWgROXKm6003ycWV4gZHoF8GA6w==
+  dependencies:
+    "@types/node" "*"
+
 "@types/eslint-visitor-keys@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@types/eslint-visitor-keys/-/eslint-visitor-keys-1.0.0.tgz#1ee30d79544ca84d68d4b3cdb0af4f205663dd2d"
@@ -149,11 +156,12 @@
   dependencies:
     "@types/node" "*"
 
-"@types/socket.io@2.1.4":
-  version "2.1.4"
-  resolved "https://registry.yarnpkg.com/@types/socket.io/-/socket.io-2.1.4.tgz#674e7bc193c5ccdadd4433f79f3660d31759e9ac"
-  integrity sha512-cI98INy7tYnweTsUlp8ocveVdAxENUThO0JsLSCs51cjOP2yV5Mqo5QszMDPckyRRA+PO6+wBgKvGvHUCc23TQ==
+"@types/socket.io@2.1.9":
+  version "2.1.9"
+  resolved "https://registry.yarnpkg.com/@types/socket.io/-/socket.io-2.1.9.tgz#9446e83df9f7a5764531aeb2c0ea78839a0caaeb"
+  integrity sha512-tnzPZztUGIXvowSEEJ/m5BwnQ7Dw7Y7yMjjckP+Ru5xx1LT9H+cAEc5eegPnMRNi76gS5N9Txi1SqjjFr3Kfpw==
   dependencies:
+    "@types/engine.io" "*"
     "@types/node" "*"
 
 "@types/yargs-parser@*":
