@@ -1,7 +1,9 @@
 {
+  "root": true,
   "env": {
     "es6": true,
-    "node": true
+    "node": true,
+    "es2020": true
   },
   "extends": [
     "eslint:recommended",
@@ -14,15 +16,22 @@
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 2020,
+    "project": "./tsconfig.json",
     "sourceType": "module"
   },
+  "reportUnusedDisableDirectives": true,
+  "noInlineConfig": true,
   "plugins": ["@typescript-eslint"],
   "rules": {
     "indent": ["error", 2],
     "quotes": ["error", "double"],
     "semi": ["error", "always"],
     "comma-dangle": ["error", "never"],
-    "linebreak-style": "off",
-    "no-console": "off"
+    "linebreak-style": ["warn", "unix"],
+    "no-console": "off",
+    "no-multiple-empty-lines": ["warn", { "max": 1, "maxEOF": 0, "maxBOF": 0 }],
+    "one-var": ["error", "consecutive"],
+    "no-var": "error",
+    "@typescript-eslint/no-explicit-any": "error"
   }
 }
