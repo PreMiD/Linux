@@ -3,7 +3,8 @@
     "module": "CommonJS",
     "target": "ES2020",
     "moduleResolution": "node",
-    "outDir": "dist/app",
+    "outDir": "./dist",
+    "strict": true,
     "removeComments": true,
     "esModuleInterop": true,
     "inlineSourceMap": true,
@@ -11,7 +12,8 @@
     "sourceRoot": "/",
     "skipLibCheck": true,
     "noUnusedParameters": true,
-    "noUnusedLocals": true
+    "noUnusedLocals": true,
+    "forceConsistentCasingInFileNames": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]

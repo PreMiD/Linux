@@ -1,40 +1,60 @@
+import DiscordManager from "./util/DiscordManager";
+import LogManager from "./util/LogManager";
+import SocketIO from "socket.io";
+import UpdateManager from "./util/UpdateManager";
+import { join } from "path";
+import { readFileSync } from "fs";
 import "source-map-support/register";
 
-import { app, dialog } from "electron";
-import { init as initSocket, socket } from "./managers/socketManager";
-import { update as initAutoLaunch } from "./managers/launchManager";
-import { TrayManager } from "./managers/trayManager";
-import { checkForUpdate } from "./util/updateChecker";
+export let server: SocketIO.Server, socket: SocketIO.Socket;
 
-let singleInstanceLock: boolean;
-//* Attempt locking to a single instance if app is in production
-if (app.isPackaged) singleInstanceLock = app.requestSingleInstanceLock();
-export let trayManager: TrayManager;
+export let packageJSON = JSON.parse(
+		readFileSync(join(__dirname, "package.json"), "utf-8")
+	),
+	logManager = new LogManager(),
+	discordManager = new DiscordManager(),
+	updateManager = new UpdateManager();
 
-app.on("ready", async () => {
-  if (!singleInstanceLock && app.isPackaged) return app.exit();
+async function main() {
+	setInterval(() => {
+		packageJSON = JSON.parse(
+			readFileSync(join(__dirname, "package.json"), "utf-8")
+		);
+	}, 1000);
 
-  trayManager = new TrayManager();
+	await updateManager.checkForUpdate();
 
-  initAutoLaunch();
-  await initSocket();
+	server = SocketIO();
 
-  if (app.isPackaged && app.name.includes("Portable")) {
-    await checkForUpdate(true);
-    setInterval(() => {
-      checkForUpdate(true);
-    }, 15 * 1000 * 60);
-  }
-});
+	server.on("connection", s => {
+		socket = s;
 
-//* Send errors from app to extension
-process.on("unhandledRejection", (rejection) => {
-  console.error(rejection);
-  if (socket && socket.connected) socket.emit("unhandledRejection", rejection);
-});
+		socket.on("setActivity", (activity: any) =>
+			discordManager.setActivity(activity.clientId, activity.presenceData)
+		);
 
-// TODO Find better way to log
-process.on("uncaughtException", (err) => {
-  dialog.showErrorBox(err.name, err.stack);
-  app.quit();
+		socket.on("clearActivity", () => discordManager.clearActivity());
+
+		socket.on("getVersion", () =>
+			socket.emit("receiveVersion", packageJSON.version.replace(/\D/g, ""))
+		);
+	});
+
+	try {
+		logManager.info("Listening on port 3020");
+		server.listen(3020);
+	} catch (err) {
+		logManager.error(`Error binding port: ${err.message}`);
+		process.exit(0);
+	}
+}
+
+main();
+
+//* Terminate strategy
+process.once("SIGTERM", () => {
+	socket?.disconnect(true);
+	server.close();
+	discordManager.currentClient?.client.destroy().catch(() => {});
+	process.kill(process.pid, "SIGTERM");
 });

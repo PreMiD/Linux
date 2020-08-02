@@ -14,66 +14,37 @@
   "homepage": "https://premid.app",
   "license": "MPL-2.0",
   "scripts": {
-    "init": "tsc && devScript --copyOnly",
-    "start": "electron dist/app/.",
     "dev": "devScript",
-    "dist": "cd dist/app/ && yarn install",
-    "build": "electron-builder --project ./dist/app/ -p never",
-    "build:appimage": "electron-builder --project ./dist/app/ build -l AppImage --x64 -p onTagOrDraft",
-    "build:n-appimage": "electron-builder --project ./dist/app/ build -l AppImage --x64 -p never"
-  },
-  "build": {
-    "appId": "com.PreMiD.app",
-    "copyright": "PreMiD Org",
-    "linux": {
-      "category": "Utility",
-      "artifactName": "${productName}.${ext}",
-      "icon": "assets/appIcon.icns",
-      "executableName": "premid",
-      "target": [
-        "tar.gz",
-        "deb",
-        "rpm"
-      ],
-      "extraFiles": [
-        "assets/premid.desktop",
-        "assets/appIcon.png"
-      ],
-      "desktop": {
-        "GenericName": "Discord RPC",
-        "Categories": "Utility;",
-        "Actions": "StoreURL;ContributorsURL;Debug;Kill;\n\n[Desktop Action StoreURL]\nType=Link\nURL=https://premid.app/store\nName=Presence Store\n\n[Desktop Action ContributorsURL]\nType=Link\nURL=https://premid.app/contributors\nName=Acknowledgments\n\n[Desktop Action Debug]\nTerminal=true\nName=Open in Terminal\n\n[Desktop Action Kill]\nExec=killall -3 premid\nName=Quit"
-      }
-    },
-    "publish": [
-      {
-        "provider": "github",
-        "owner": "PreMiD",
-        "repo": "Linux",
-        "vPrefixedTagName": true,
-        "releaseType": "release"
-      }
-    ]
+    "start": "cd dist && node master",
+    "build": "rimraf dist && tsc --skipLibCheck && devScript --copyOnly && tsc build.ts && node build.js"
   },
   "devDependencies": {
     "@timeraa/devscript": "Timeraa/DevScript",
-    "@types/auto-launch": "5.0.1",
-    "@types/discord-rpc": "3.0.3",
-    "@types/node": "13.13.5",
-    "@types/socket.io": "2.1.4",
-    "@typescript-eslint/eslint-plugin": "2.31.0",
-    "@typescript-eslint/parser": "2.31.0",
-    "electron": "^7.1.11",
-    "electron-builder": "22.6.0",
-    "eslint": "7.0.0",
-    "typescript": "3.8.3"
+    "@types/archiver": "^3.1.0",
+    "@types/auto-launch": "^5.0.1",
+    "@types/discord-rpc": "^3.0.3",
+    "@types/fs-extra": "^8.1.0",
+    "@types/node": "^14.0.1",
+    "@types/rimraf": "^3.0.0",
+    "@types/socket.io": "^2.1.4",
+    "@types/unzipper": "^0.10.3",
+    "@typescript-eslint/eslint-plugin": "^2.31.0",
+    "@typescript-eslint/parser": "^2.31.0",
+    "archiver": "^4.0.1",
+    "eslint": "^7.0.0",
+    "fs-extra": "^9.0.0",
+    "rcedit": "^2.1.1",
+    "rimraf": "^3.0.2",
+    "typescript": "^3.8.3"
   },
   "dependencies": {
-    "auto-launch": "5.0.5",
+    "axios": "^0.19.2",
+    "chalk": "^4.0.0",
     "discord-rpc": "github:discordjs/RPC",
-    "electron-store": "5.1.1",
-    "electron-updater": "4.3.1",
-    "socket.io": "2.3.0",
-    "source-map-support": "0.5.19"
+    "fast-glob": "^3.2.2",
+    "node-linux": "^0.1.12",
+    "socket.io": "^2.3.0",
+    "source-map-support": "^0.5.19",
+    "unzipper": "^0.10.11"
   }
 }
