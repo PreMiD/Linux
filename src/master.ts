@@ -5,12 +5,12 @@ let child: ChildProcess;
 spawnChild();
 
 function spawnChild() {
-	child = fork(join(__dirname, "index.js"));
+  child = fork(join(__dirname, "index.js"));
 
-	child.once("exit", spawnChild);
+  child.once("exit", spawnChild);
 }
 
 process.once("SIGTERM", () => {
-	child.kill("SIGTERM");
-	process.kill(process.pid, "SIGTERM");
+  child.kill("SIGTERM");
+  process.kill(process.pid, "SIGTERM");
 });
