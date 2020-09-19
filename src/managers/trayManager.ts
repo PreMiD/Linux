@@ -1,10 +1,8 @@
 import { Menu, Tray, app, shell } from "electron";
 import { join } from "path";
+import { trayManager } from "..";
 import { checkForUpdate, updateProcess } from "../util/updateChecker";
-import { connectionState as socketState } from "./socketManager";
-import { connectionState as discordState } from "./discordManager";
-import { settings } from "./settingsManager";
-import { update as updateAutoLaunch } from "./launchManager";
+import { connected } from "./socketManager";
 
 export class TrayManager {
   tray: Tray;
@@ -12,10 +10,8 @@ export class TrayManager {
   constructor() {
     this.tray = new Tray(join(__dirname, "../assets/tray/Icon@2x.png"));
     this.tray.setContextMenu(null);
-    this.tray.setToolTip(app.name);
 
-    this.update();
-    this.tray.on("click", () => this.update());
+    this.tray.setToolTip(app.name);
     this.tray.on("right-click", () => this.update());
   }
 
@@ -27,31 +23,19 @@ export class TrayManager {
           enabled: false
         },
         {
-          type: "separator"
-        },
-        {
-          label: `Extension - ${socketState ? socketState : "Connecting"}`,
-          enabled: false
-        },
-        {
-          label: `Discord - ${discordState ? socketState : "Disconnected"}`,
+          id: "connectInfo",
+          label: `Extension - ${connected ? "Connected" : "Not connected"}`,
           enabled: false
         },
         {
           type: "separator"
         },
         {
-          label: "Auto launch",
-          type: "checkbox",
-          click: () => {
-            settings.get("autoLaunch")
-              ? settings.set("autoLaunch", false)
-              : settings.set("autoLaunch", true);
-            updateAutoLaunch();
-          },
-          checked: settings.get("autoLaunch") == true,
-          enabled: app.isPackaged,
-          visible: !app.name.includes("Portable")
+          label: "Presence Store",
+          click: () => shell.openExternal("https://premid.app/store")
+        },
+        {
+          type: "separator"
         },
         {
           label: "Check for updates",
@@ -80,13 +64,6 @@ export class TrayManager {
             updateProcess === "checking"
         },
         {
-          type: "separator"
-        },
-        {
-          label: "Presence Store",
-          click: () => shell.openExternal("https://premid.app/store")
-        },
-        {
           label: "Acknowledgments",
           click: () => shell.openExternal("https://premid.app/contributors")
         },
@@ -94,10 +71,12 @@ export class TrayManager {
           type: "separator"
         },
         {
-          label: `Quit`,
+          label: `Quit ${app.name}`,
           role: "quit"
         }
       ])
     );
   }
 }
+
+app.once("quit", () => trayManager.tray.destroy());

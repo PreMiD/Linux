@@ -11,11 +11,21 @@ let autoLaunch = new AutoLaunch({
 /**
  * Updates autoLaunch
  */
-export function update() {
+export async function update() {
   //* If app not packaged return
   //* Either enable/disable autolaunch
-  if (!app.isPackaged || (app.isPackaged && app.name.includes("Portable")))
+  if (!app.isPackaged || (app.isPackaged && app.name.includes("Portable"))) {
+    //* Return
+    console.log(
+      (app.isPackaged
+        ? "Portable version detected,"
+        : "Debug version detected,") + " skipping autoLaunch"
+    );
     return;
-  //* Enable if disabled and vice versa
-  settings.get("autoLaunch") ? autoLaunch.enable() : autoLaunch.disable();
+  }
+  if (settings.get("autoLaunch", true))
+    //* Enable if not enabled
+    autoLaunch.enable();
+  //* Disable if enabled
+  else autoLaunch.disable();
 }

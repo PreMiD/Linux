@@ -1,9 +1,12 @@
 {
   "name": "premid",
   "productName": "PreMiD",
-  "author": "Jack 'DooMLorD' W. <doomlordcs@gmail.com> (https://github.com/doomlerd)",
+  "author": "Florian 'Timeraa' Metz <me@timeraa.dev> (https://github.com/timeraa)",
+  "contributors": [
+    "Jack 'DooMLorD' W. <doomlordcs@gmail.com> (https://github.com/doomlerd)"
+  ],
   "description": "Discord Rich Presence for web services",
-  "version": "2.2.16",
+  "version": "2.2.17",
   "repository": {
     "type": "git",
     "url": "git://github.com/PreMiD/Linux.git"
@@ -17,8 +20,8 @@
     "init": "tsc && devScript --copyOnly",
     "start": "electron dist/app/.",
     "dev": "devScript",
-    "dist": "cd dist/app/ && yarn install",
-    "build": "electron-builder --project ./dist/app/ -p never",
+    "dist": "tsc && devScript --copyOnly && cd dist/app/ && yarn install",
+    "build": "electron-builder --project ./dist/app/",
     "build:appimage": "electron-builder --project ./dist/app/ build -l AppImage --x64 -p onTagOrDraft",
     "build:n-appimage": "electron-builder --project ./dist/app/ build -l AppImage --x64 -p never"
   },
@@ -26,10 +29,10 @@
     "appId": "com.PreMiD.app",
     "copyright": "PreMiD Org",
     "linux": {
+      "maintainer": "Jack 'DooMLorD' W. <doomlordcs@gmail.com> (https://github.com/doomlerd)",
       "category": "Utility",
       "artifactName": "${productName}.${ext}",
       "icon": "assets/appIcon.icns",
-      "executableName": "premid",
       "target": [
         "tar.gz",
         "deb",
@@ -38,12 +41,7 @@
       "extraFiles": [
         "assets/premid.desktop",
         "assets/appIcon.png"
-      ],
-      "desktop": {
-        "GenericName": "Discord RPC",
-        "Categories": "Utility;",
-        "Actions": "StoreURL;ContributorsURL;Debug;Kill;\n\n[Desktop Action StoreURL]\nType=Link\nURL=https://premid.app/store\nName=Presence Store\n\n[Desktop Action ContributorsURL]\nType=Link\nURL=https://premid.app/contributors\nName=Acknowledgments\n\n[Desktop Action Debug]\nTerminal=true\nName=Open in Terminal\n\n[Desktop Action Kill]\nExec=killall -3 premid\nName=Quit"
-      }
+      ]
     },
     "publish": [
       {
@@ -58,22 +56,19 @@
   "devDependencies": {
     "@timeraa/devscript": "Timeraa/DevScript",
     "@types/auto-launch": "5.0.1",
-    "@types/discord-rpc": "3.0.3",
-    "@types/node": "13.13.5",
+    "@types/discord-rpc": "3.0.2",
+    "@types/node": "13.9.3",
     "@types/socket.io": "2.1.4",
-    "@typescript-eslint/eslint-plugin": "2.31.0",
-    "@typescript-eslint/parser": "2.31.0",
-    "electron": "^7.1.11",
-    "electron-builder": "22.6.0",
-    "eslint": "7.0.0",
+    "electron": "8.2.0",
+    "electron-builder": "22.4.1",
     "typescript": "3.8.3"
   },
   "dependencies": {
     "auto-launch": "5.0.5",
     "discord-rpc": "github:discordjs/RPC",
     "electron-store": "5.1.1",
-    "electron-updater": "4.3.1",
+    "electron-updater": "4.2.5",
     "socket.io": "2.3.0",
-    "source-map-support": "0.5.19"
+    "source-map-support": "0.5.16"
   }
 }

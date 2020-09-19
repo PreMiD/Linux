@@ -2,9 +2,6 @@ name: CI
 on:
   repository_dispatch:
   push:
-    paths:
-      - '!*'
-      - 'src/**'
     branches:
       - master
 jobs:
@@ -22,27 +19,19 @@ jobs:
           echo "::set-output name=productName::$(node -p -e "require('./package.json').productName")"
           echo "::set-output name=version::$(node -p -e "require('./package.json').version")"
       - name: Install Dependencies
-        run: yarn
-      - name: Compile TypeScript
-        run: yarn run init
-      - name: Install Distributable Modules
-        run: yarn run dist
-      - name: Build Packages
         run: |
-          jq -c '.version = "${{ steps.info.outputs.version }}-${{ steps.info.outputs.timestamp }}"' ./dist/app/package.json > tmp.$$.json && mv tmp.$$.json ./dist/app/package.json
-          yarn run build
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          yarn install
+          yarn run dist
+      - name: Building
+        run: yarn run build
       - name: Publish
         run: |
-          curl -T ./dist/app/dist/${{ steps.info.outputs.productName }}.deb -udoomlerd:${{ secrets.BT_KEY }} "https://api.bintray.com/content/premid/debian-ubuntu/premid/${{ steps.info.outputs.version }}.${{ steps.info.outputs.timestamp }}/pool/nightly/p/premid_${{ steps.info.outputs.version }}.${{ steps.info.outputs.timestamp }}_amd64.deb;deb_distribution=nightly;deb_component=main;deb_architecture=amd64;publish=1"
-          curl -T ./dist/app/dist/${{ steps.info.outputs.productName }}.rpm -udoomlerd:${{ secrets.BT_KEY }} "https://api.bintray.com/content/premid/redhat-nightly/premid/${{ steps.info.outputs.version }}.${{ steps.info.outputs.timestamp }}/main/premid-${{ steps.info.outputs.version }}.${{ steps.info.outputs.timestamp }}.x86_64.rpm;publish=1"
+          curl -T ./dist/app/dist/${{ steps.info.outputs.productName }}.deb -udoomlerd:${{ secrets.BT_KEY }} "https://api.bintray.com/content/premid/debian-ubuntu/premid/${{ steps.info.outputs.version }}-${{ steps.info.outputs.timestamp }}/pool/nightly/p/premid_${{ steps.info.outputs.version }}-${{ steps.info.outputs.timestamp }}_amd64.deb;deb_distribution=nightly;deb_component=main;deb_architecture=amd64;publish=1"
+          curl -T ./dist/app/dist/${{ steps.info.outputs.productName }}.rpm -udoomlerd:${{ secrets.BT_KEY }} "https://api.bintray.com/content/premid/redhat-nightly/premid/${{ steps.info.outputs.version }}-${{ steps.info.outputs.timestamp }}/main/premid-${{ steps.info.outputs.version }}.${{ steps.info.outputs.timestamp }}.x86_64.rpm;publish=1"
       - name: Build AppImage
         run: |
           jq -c '.productName = "PreMiD Portable"' ./dist/app/package.json > tmp.$$.json && mv tmp.$$.json ./dist/app/package.json
           yarn run build:n-appimage
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
@@ -68,15 +57,11 @@ jobs:
           echo "::set-output name=productName::$(node -p -e "require('./package.json').productName")"
           echo "::set-output name=version::$(node -p -e "require('./package.json').version")"
       - name: Install Dependencies
-        run: yarn
-      - name: Compile TypeScript
-        run: yarn run init
-      - name: Install Distributable Modules
-        run: yarn run dist
-      - name: Build Packages
+        run: |
+          yarn install
+          yarn run dist
+      - name: Building
         run: yarn run build
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish
         run: |
           curl -T ./dist/app/dist/${{ steps.info.outputs.productName }}.deb -udoomlerd:${{ secrets.BT_KEY }} "https://api.bintray.com/content/premid/debian-ubuntu/premid/${{ steps.info.outputs.version }}/pool/stable/p/premid_${{ steps.info.outputs.version }}_amd64.deb;deb_distribution=stable;deb_component=main;deb_architecture=amd64;publish=1"

@@ -2,9 +2,7 @@ import ElectronStore from "electron-store";
 import { update as updateAutoLaunch } from "./launchManager";
 
 //* Import custom types
-/* eslint-disable no-unused-vars */
 import ExtensionSettings from "../../@types/PreMiD/ExtensionSettings";
-/* eslint-enable no-unused-vars */
 
 //* Export and set default settings
 export let settings = new ElectronStore({

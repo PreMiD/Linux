@@ -1,7 +1,5 @@
 import socketIo from "socket.io";
-/* eslint-disable no-unused-vars */
 import { createServer, Server } from "http";
-/* eslint-enable no-unused-vars */
 import { app, dialog } from "electron";
 import { update as updateSettings } from "./settingsManager";
 import { openFileDialog } from "./presenceDevManager";
@@ -16,17 +14,12 @@ import { trayManager } from "..";
 export let io: socketIo.Server;
 export let socket: socketIo.Socket;
 export let server: Server;
-
-//* States :
-//* - Disconnected
-//* - Connected
-//* - Connecting
-export let connectionState: String = "Connecting";
+export let connected: boolean = false;
 
 export function init() {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     //* Create server
-    //* create SocketIo server, don't serve the client
+    //* create SocketIo server, don't server client
     //* Try to listen to port 3020
     //* If that fails/some other error happens run socketError
     //* If someone connects to socket socketConnection
@@ -34,8 +27,8 @@ export function init() {
     io = socketIo(server, { serveClient: false });
     server.listen(3020, () => {
       //* Resolve promise
-      console.log("Opened socket");
       resolve();
+      console.log("Opened socket");
     });
     server.on("error", socketError);
     io.on("connection", socketConnection);
@@ -52,9 +45,7 @@ function socketConnection(cSocket: socketIo.Socket) {
   //* Once socket user disconnects run cleanup
   console.log("Socket connection");
   socket = cSocket;
-  getDiscordUser()
-    .then((user) => socket.emit("discordUser", user))
-    .catch(() => socket.emit("discordUser", null));
+  getDiscordUser().then(user => socket.emit("discordUser", user));
   socket.on("setActivity", setActivity);
   socket.on("clearActivity", clearActivity);
   socket.on("settingUpdate", updateSettings);
@@ -63,25 +54,25 @@ function socketConnection(cSocket: socketIo.Socket) {
     socket.emit("receiveVersion", app.getVersion().replace(/[\D]/g, ""))
   );
   socket.once("disconnect", () => {
-    updateTray("Disconnected");
-    if (trayManager && trayManager.tray) trayManager.update();
+    connected = false;
+    trayManager.update();
     //* Destroy all open RPC connections
     console.log("Socket disconnected.");
-    rpcClients.forEach((c) => c.destroy());
+    rpcClients.forEach(c => c.destroy());
   });
-  updateTray("Connected");
-  if (trayManager && trayManager.tray) trayManager.update();
+  connected = true;
+  trayManager.update();
 }
 
 app.on("quit", () => {
-  if (socket && socket.connected) server.close();
+  if (socket && socket.connected) socket.disconnect(true);
 });
 
 //* Runs on socket errors
-async function socketError(e: any) {
+function socketError(e: any) {
   //* If port in use
+  console.log(`Socket error :\n${e.message}`);
   if (e.code === "EADDRINUSE") {
-    updateTray("Disconnected");
     //* Focus app
     //* Show error dialog
     //* Exit app afterwards
@@ -90,15 +81,6 @@ async function socketError(e: any) {
       "Oh noes! Port error...",
       `${app.name} could not bind to port ${e.port}.\nIs ${app.name} running already?`
     );
-    app.exit();
-  } else {
-    console.log(`Socket error :\n${e.message}`);
-  }
-}
-
-function updateTray(reason: string = "Connecting") {
-  if (!connectionState || (connectionState && connectionState !== reason)) {
-    connectionState = reason;
-    if (trayManager) trayManager.update();
+    app.quit();
   }
 }

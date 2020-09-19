@@ -14,7 +14,7 @@ export async function watchDir(path: string) {
   let files = readdirSync(path);
   currWatchPath = path + "/";
   presenceDevWatchedFiles = files;
-  presenceDevWatchedFiles.map((f) => {
+  presenceDevWatchedFiles.map(f => {
     //* Watch file
     //* ReadFiles
     watchFile(currWatchPath + f, { interval: 250 }, async () => {
@@ -68,7 +68,7 @@ export async function openFileDialog() {
   console.log(`Watching ${oDialog.filePaths[0]}`);
   if (presenceDevWatchedFiles.length > 0)
     await Promise.all(
-      presenceDevWatchedFiles.map((f) => unwatchFile(currWatchPath + f))
+      presenceDevWatchedFiles.map(f => unwatchFile(currWatchPath + f))
     );
 
   watchDir(oDialog.filePaths[0]);

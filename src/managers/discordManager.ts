@@ -1,20 +1,11 @@
 import { Client } from "discord-rpc";
 import { app } from "electron";
-import { trayManager } from "..";
 
 //* Import custom types
-/* eslint-disable no-unused-vars */
 import PresenceData from "../../@types/PreMiD/PresenceData";
-/* eslint-enable no-unused-vars */
 
 //* Define Presence array
 export let rpcClients: Array<RPCClient> = [];
-
-//* States :
-//* - Disconnected
-//* - Connected
-//* - Connecting
-export let connectionState: String = "Connecting";
 
 class RPCClient {
   clientId: string;
@@ -31,7 +22,6 @@ class RPCClient {
     });
 
     this.client.once("ready", () => {
-      updateTray("Connected");
       this.clientReady = true;
       this.setActivity();
     });
@@ -39,17 +29,14 @@ class RPCClient {
     this.client.once(
       // @ts-ignore
       "disconnected",
-      () => {
-        updateTray("Disconnected");
-        rpcClients = rpcClients.filter(
-          (client) => client.clientId !== this.clientId
-        );
-      }
+      () =>
+        (rpcClients = rpcClients.filter(
+          client => client.clientId !== this.clientId
+        ))
     );
 
     this.client.login({ clientId: this.clientId }).catch(() => this.destroy());
 
-    updateTray("Connected");
     console.log(`Create RPC client (${this.clientId})`);
   }
 
@@ -63,9 +50,8 @@ class RPCClient {
       presenceData.presenceData.largeImageText &&
       presenceData.presenceData.largeImageText.includes("PreMiD")
     )
-      presenceData.presenceData.largeImageText = `PreMiD 🐧 v${app.getVersion()}`;
-
-    updateTray("Connected");
+      presenceData.presenceData.largeImageText =
+        `PreMiD 🐧 v${app.getVersion()}`;
 
     this.client
       .setActivity(presenceData.presenceData)
@@ -82,18 +68,14 @@ class RPCClient {
 
   async destroy() {
     try {
-      if (this.clientReady) {
-        this.client.clearActivity();
-        this.client.destroy();
-        console.log(`Destroy RPC client (${this.clientId})`);
-      }
+      console.log(`Destroy RPC client (${this.clientId})`);
+      this.client.clearActivity();
+      this.client.destroy();
 
       rpcClients = rpcClients.filter(
-        (client) => client.clientId !== this.clientId
+        client => client.clientId !== this.clientId
       );
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   }
 }
 
@@ -102,7 +84,7 @@ class RPCClient {
  * @param presence PresenceData to set activity
  */
 export function setActivity(presence: PresenceData) {
-  let client = rpcClients.find((c) => c.clientId === presence.clientId);
+  let client = rpcClients.find(c => c.clientId === presence.clientId);
 
   if (!client) {
     client = new RPCClient(presence.clientId);
@@ -116,36 +98,23 @@ export function setActivity(presence: PresenceData) {
  */
 export function clearActivity(clientId: string = undefined) {
   if (clientId) {
-    let client = rpcClients.find((c) => c.clientId === clientId);
+    let client = rpcClients.find(c => c.clientId === clientId);
     console.log("Clear activity");
     client.clearActivity();
   } else {
-    rpcClients.forEach((c) => c.clearActivity());
+    rpcClients.forEach(c => c.clearActivity());
     console.log("Clear all activity");
   }
 }
 
 export async function getDiscordUser() {
-  updateTray("Connecting");
-  return new Promise((resolve, reject) => {
-    const c = new Client({ transport: "ipc" });
-
-    c.login({
-      clientId: "503557087041683458"
-    })
-      .then(({ user }) => c.destroy().then(() => resolve(user)))
-      .catch(reject);
+  const user = await new Client({ transport: "ipc" }).login({
+    clientId: "503557087041683458"
   });
+  return user.user;
 }
 
 app.once(
   "will-quit",
-  async () => await Promise.all(rpcClients.map((c) => c.destroy()))
+  async () => await Promise.all(rpcClients.map(c => c.destroy()))
 );
-
-function updateTray(reason: string = "Connecting") {
-  if (!connectionState || (connectionState && connectionState !== reason)) {
-    connectionState = reason;
-    if (trayManager) trayManager.update();
-  }
-}

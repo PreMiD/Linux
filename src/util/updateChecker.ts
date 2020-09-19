@@ -44,11 +44,9 @@ autoUpdater.on("error", (error: any) => {
   errHandler(error);
 });
 
-function updateTray(reason: string = "standby") {
-  if (!updateProcess || (updateProcess && updateProcess !== reason)) {
-    updateProcess = reason;
-    if (trayManager) trayManager.update();
-  }
+function updateTray(reason: string) {
+  updateProcess = reason;
+  trayManager.update();
 }
 
 // Temporarily
@@ -58,7 +56,7 @@ function errHandler(error: any) {
   } else {
     console.log(
       "An error occured while updating " +
-        (autoUpdater.autoDownload ? "[AUTO] :" : "[MANUAL] :"),
+      (autoUpdater.autoDownload ? "[AUTO] :" : "[MANUAL] :"),
       error ? (error.stack || error).toString() : "unknown"
     );
   }

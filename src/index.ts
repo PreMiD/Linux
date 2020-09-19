@@ -6,35 +6,35 @@ import { update as initAutoLaunch } from "./managers/launchManager";
 import { TrayManager } from "./managers/trayManager";
 import { checkForUpdate } from "./util/updateChecker";
 
-let singleInstanceLock: boolean;
-//* Attempt locking to a single instance if app is in production
-if (app.isPackaged) singleInstanceLock = app.requestSingleInstanceLock();
 export let trayManager: TrayManager;
 
-app.on("ready", async () => {
-  if (!singleInstanceLock && app.isPackaged) return app.exit();
-
+//* When app is ready
+export let updateCheckerInterval = null;
+app.whenReady().then(async () => {
   trayManager = new TrayManager();
 
-  initAutoLaunch();
+  await initAutoLaunch();
   await initSocket();
 
   if (app.isPackaged && app.name.includes("Portable")) {
     await checkForUpdate(true);
-    setInterval(() => {
+    updateCheckerInterval = setInterval(() => {
       checkForUpdate(true);
     }, 15 * 1000 * 60);
   }
 });
 
+//* If second instance started, close old one
+app.on("second-instance", () => app.exit(0));
+
 //* Send errors from app to extension
-process.on("unhandledRejection", (rejection) => {
+process.on("unhandledRejection", rejection => {
   console.error(rejection);
   if (socket && socket.connected) socket.emit("unhandledRejection", rejection);
 });
 
 // TODO Find better way to log
-process.on("uncaughtException", (err) => {
+process.on("uncaughtException", err => {
   dialog.showErrorBox(err.name, err.stack);
-  app.quit();
+  app.exit(0);
 });
