@@ -61,7 +61,7 @@ function errHandler(error: any) {
 	} else {
 		console.log(
 			"An error occured while updating " +
-			(autoUpdater.autoDownload ? "[AUTO] :" : "[MANUAL] :"),
+				(autoUpdater.autoDownload ? "[AUTO] :" : "[MANUAL] :"),
 			error ? (error.stack || error).toString() : "unknown"
 		);
 	}

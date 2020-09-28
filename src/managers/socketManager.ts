@@ -17,7 +17,7 @@ export let server: Server;
 export let connected: boolean = false;
 
 export function init() {
-	return new Promise((resolve) => {
+	return new Promise(resolve => {
 		//* Create server
 		//* create SocketIo server, don't server client
 		//* Try to listen to port 3020
@@ -49,7 +49,7 @@ function socketConnection(cSocket: socketIo.Socket) {
 	//* Once socket user disconnects run cleanup
 	console.log("Socket connection");
 	socket = cSocket;
-	getDiscordUser().then((user) => socket.emit("discordUser", user));
+	getDiscordUser().then(user => socket.emit("discordUser", user));
 	socket.on("setActivity", setActivity);
 	socket.on("clearActivity", clearActivity);
 	socket.on("settingUpdate", updateSettings);
@@ -62,7 +62,7 @@ function socketConnection(cSocket: socketIo.Socket) {
 		trayManager.update();
 		//* Destroy all open RPC connections
 		console.log("Socket disconnected.");
-		rpcClients.forEach((c) => c.destroy());
+		rpcClients.forEach(c => c.destroy());
 	});
 	connected = true;
 	trayManager.update();
