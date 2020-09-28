@@ -1,3 +1,7 @@
+# Important update!
+
+<h3>For security reasons, we released update 2.2.17 that changes Updater URL from DoomLord's (old linux maintainer) to our official PreMiD repo. To be safe, every Linux user should download AppImage with version 2.2.17 and shouldn't use Arch User Respository version or Debian/Ubuntu repo for now.</h3>
+
 <img src=".github/mLogo.png" width="150" height="150" align="left"></img>
 
 <h1>PreMiD <code>--linux</code></h1>
