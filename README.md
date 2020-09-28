@@ -25,7 +25,7 @@ Discord Rich Presence for web services!
   - [Additional notes](#appimagenotes)
 - **Red Hat Enterprise Linux (RHEL) based distributions** (soon, use [this](#appimage) for now)
 - **Debian and Ubuntu based distributions** (soon, use [this](#appimage) for now)
-- **[Arch Linux based distributions](#arch)** (soon, use [this](#appimage) for now)
+- **Arch Linux based distributions** (soon, use [this](#appimage) for now)
 - **[Gentoo Linux](#gentoo)**
   - [Installation instructions](#gentooinstall)
   - [Additional notes](#gentoonotes)
