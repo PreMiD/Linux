@@ -7,8 +7,8 @@ autoUpdater.autoDownload = false;
 export async function checkForUpdate(auto = false) {
 	autoUpdater.setFeedURL({
 		provider: "github",
-		owner: "doomlerd",
-		repo: "LinuxUpdater"
+		owner: "PreMiD",
+		repo: "Linux"
 	});
 	autoUpdater.autoDownload = auto;
 	try {
