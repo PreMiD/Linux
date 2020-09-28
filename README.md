@@ -25,9 +25,7 @@ Discord Rich Presence for web services!
   - [Additional notes](#appimagenotes)
 - **Red Hat Enterprise Linux (RHEL) based distributions** (soon, use [this](#appimage) for now)
 - **Debian and Ubuntu based distributions** (soon, use [this](#appimage) for now)
-- **[Arch Linux based distributions](#arch)**
-  - [Installation instructions](#archinstall)
-  - [Additional notes](#archnotes)
+- **[Arch Linux based distributions](#arch)** (soon, use [this](#appimage) for now)
 - **[Gentoo Linux](#gentoo)**
   - [Installation instructions](#gentooinstall)
   - [Additional notes](#gentoonotes)
@@ -131,60 +129,6 @@ wget https://github.com/PreMiD/Linux/releases/latest/download/PreMiD-Portable.Ap
 ### Additional notes
 
 Either if you want to try PreMiD or just don't want to install it, this one's the best, it's always up to date but _DOESN'T AUTO-START WITH THE SYSTEM!_</br>If you get tired of having to open it each time, use the other packages (according to your distribution).
-
-<a name="arch"></a>
-<img src=".github/iusearchbtw.svg" width="100" height="100" align="right"></img>
-
-## Arch Linux based distributions
-
-Uses [Arch User Repository](https://aur.archlinux.org/packages/premid);</br>
-Supported distributions are _itself_, Manjaro, Anarchy, Artix, Arco, ArchLabs, Endeavour, Archman, BlackArch, Liri OS and [every one that supports installing from AUR](https://wiki.archlinux.org/index.php/Arch-based_distributions#Active).
-
-<a name="archinstall"></a>
-
-### Installation instructions
-
-```bash
-# Using yay (recommended)
-yay -S premid
-```
-
-```bash
-# Using pakku
-pakku -S premid
-```
-
-```bash
-# Using trizen
-trizen -S premid
-```
-
-```bash
-# Using pacaur
-pacaur -S premid
-```
-
-```bash
-# ... you get the point
-```
-
-or manually from the [Arch User Repository](https://aur.archlinux.org/packages/premid) if you know what you're doing.
-
-<a name="archnotes"></a>
-
-### Additional notes
-
-If your distro uses pacman, then you have to install one of the helpers first. If you don't have any, Yay is recommended, run :
-
-```bash
-git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
-```
-
-```bash
-yay -S premid
-```
-
-Other AUR/Pacman helpers work as well, although each one's functionality is different so you may face issues while using them.
 
 <img src=".github/gentoo.svg" width="100" height="100" align="right"></img>
 <a name="gentoo"></a>
