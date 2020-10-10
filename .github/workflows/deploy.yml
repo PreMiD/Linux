@@ -24,6 +24,19 @@ jobs:
           yarn run dist
       - name: Building
         run: yarn run build
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7.2
+      - name: Install packagecloud.io CLI
+        run: |
+          gem install package_cloud
+      - name: Publish Debian/Ubuntu & RPM packages
+        run: |
+          package_cloud push PreMiD/Linux ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
+          package_cloud push PreMiD/Linux ./dist/app/dist/${{ steps.info.outputs.productName }}.rpm
+        env:
+          PACKAGECLOUD_TOKEN: ${{ secrets.PACKAGECLOUD_TOKEN }}
       - name: Build AppImage
         run: |
           jq -c '.productName = "PreMiD Portable"' ./dist/app/package.json > tmp.$$.json && mv tmp.$$.json ./dist/app/package.json
@@ -69,6 +82,19 @@ jobs:
           prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7.2
+      - name: Install packagecloud.io CLI
+        run: |
+          gem install package_cloud
+      - name: Publish Debian/Ubuntu & RPM packages
+        run: |
+          package_cloud push PreMiD/Linux ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
+          package_cloud push PreMiD/Linux ./dist/app/dist/${{ steps.info.outputs.productName }}.rpm
+        env:
+          PACKAGECLOUD_TOKEN: ${{ secrets.PACKAGECLOUD_TOKEN }}
       - name: Publish AppImage
         run: |
           jq -c '.productName = "PreMiD Portable"' ./dist/app/package.json > tmp.$$.json && mv tmp.$$.json ./dist/app/package.json
