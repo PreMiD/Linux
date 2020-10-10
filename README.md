@@ -1,6 +1,6 @@
 # Important information!
 
-<h3>Aur users that use DoomLerd's repo should be safe as he says. We are not recommending to use it, but if you want to you can use it. Thanks to DoomLerd's for handling aur repo still.</h3>
+<h3>Aur users that use DoomLerd's package should be safe as he says. We are not recommending to use it, but if you want you can still use it. Thanks to DoomLerd for handling aur repo still.</h3>
 
 <img src=".github/mLogo.png" width="150" height="150" align="left"></img>
 
@@ -25,10 +25,7 @@ Discord Rich Presence for web services!
   - [Additional notes](#appimagenotes)
 - [**Red Hat Enterprise Linux (RHEL) based distributions**](#packagecloud)
 - [**Debian and Ubuntu based distributions**](#packagecloud)
-- **Arch Linux based distributions** (soon, use [this](#appimage) for now)
-- **[Gentoo Linux](#gentoo)**
-  - [Installation instructions](#gentooinstall)
-  - [Additional notes](#gentoonotes)
+- [**Arch Linux based distributions**](#arch)
 
 <a name="about"></a>
 
@@ -150,3 +147,57 @@ curl -s https://packagecloud.io/install/repositories/PreMiD/Linux/script.rpm.sh 
 ```
 
 If command doesn't work, download **deb/rpm** file from our packagecloud repo or override settings.
+
+<a name="arch"></a>
+<img src=".github/iusearchbtw.svg" width="100" height="100" align="right"></img>
+
+## Arch Linux based distributions
+
+Uses [Arch User Repository](https://aur.archlinux.org/packages/premid);</br>
+Supported distributions are _itself_, Manjaro, Anarchy, Artix, Arco, ArchLabs, Endeavour, Archman, BlackArch, Liri OS and [every one that supports installing from AUR](https://wiki.archlinux.org/index.php/Arch-based_distributions#Active).
+
+<a name="archinstall"></a>
+
+### Installation instructions
+
+```bash
+# Using yay (recommended)
+yay -S premid
+```
+
+```bash
+# Using pakku
+pakku -S premid
+```
+
+```bash
+# Using trizen
+trizen -S premid
+```
+
+```bash
+# Using pacaur
+pacaur -S premid
+```
+
+```bash
+# ... you get the point
+```
+
+or manually from the [Arch User Repository](https://aur.archlinux.org/packages/premid) if you know what you're doing.
+
+<a name="archnotes"></a>
+
+### Additional notes
+
+If your distro uses pacman, then you have to install one of the helpers first. If you don't have any, Yay is recommended, run :
+
+```bash
+git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
+```
+
+```bash
+yay -S premid
+```
+
+Other AUR/Pacman helpers work as well, although each one's functionality is different so you may face issues while using them.
