@@ -23,8 +23,8 @@ Discord Rich Presence for web services!
 - **[Portable AppImage](#appimage)** (_RECOMMENDED_)
   - [Installation instructions](#appimageinstall)
   - [Additional notes](#appimagenotes)
-- **Red Hat Enterprise Linux (RHEL) based distributions** (soon, use [this](#appimage) for now)
-- **Debian and Ubuntu based distributions** (soon, use [this](#appimage) for now)
+- [**Red Hat Enterprise Linux (RHEL) based distributions**](#packagecloud)
+- [**Debian and Ubuntu based distributions**](#packagecloud)
 - **Arch Linux based distributions** (soon, use [this](#appimage) for now)
 - **[Gentoo Linux](#gentoo)**
   - [Installation instructions](#gentooinstall)
@@ -130,34 +130,23 @@ wget https://github.com/PreMiD/Linux/releases/latest/download/PreMiD-Portable.Ap
 
 Either if you want to try PreMiD or just don't want to install it, this one's the best, it's always up to date but _DOESN'T AUTO-START WITH THE SYSTEM!_</br>If you get tired of having to open it each time, use the other packages (according to your distribution).
 
-<img src=".github/gentoo.svg" width="100" height="100" align="right"></img>
-<a name="gentoo"></a>
+<img src=".github/packagecloud.png" width="100"height ="100" align="right"></img>
+<a name="packagecloud"></a>
 
-## Gentoo Linux
+# PackageCloud
 
-Same applies to its derivatives, such as ColverOS, Clip-OS, Sabayon, Bicom Systems PBXware, [etc](https://wiki.gentoo.org/wiki/Distributions_based_on_Gentoo#Active_projects).
+We released deb/rpm packages at our packagecloud repo. Please visit it at https://packagecloud.io/PreMiD/Linux and download your deb/rpm package or use automatic script.
 
-<a name="gentooinstall"></a>
-
-### Installation instructions
+For **Ubuntu/Debian** repo:
 
 ```bash
-# Add the overlay using layman
-layman -S && layman -a apriluwu
+curl -s https://packagecloud.io/install/repositories/PreMiD/Linux/script.deb.sh | sudo bash
 ```
+
+For **Fedora/CentOS/RedHat**:
 
 ```bash
-# Install via portage
-emerge -av app-misc/premid
+curl -s https://packagecloud.io/install/repositories/PreMiD/Linux/script.rpm.sh | sudo bash
 ```
 
-<a name="gentoonotes"></a>
-
-### Additional notes
-
-The shown install command uses layman, it is in the official repositories through `app-portage/layman`.<br>
-To get updates you will have to sync the overlay from time to time, you can do this with
-
-```bash
-layman -S
-```
+If command doesn't work, download **deb/rpm** file from our packagecloud repo or override settings.
