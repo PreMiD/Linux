@@ -24,37 +24,6 @@ jobs:
           yarn run dist
       - name: Building
         run: yarn run build
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.7.2
-      - name: Install packagecloud.io CLI
-        run: |
-          gem install package_cloud
-      - name: Publish Debian/Ubuntu packages.
-        run: |
-          package_cloud push PreMiD/Linux/debian/wheezy ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
-          package_cloud push PreMiD/Linux/debian/jessie ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
-          package_cloud push PreMiD/Linux/debian/stretch ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
-          package_cloud push PreMiD/Linux/debian/buster ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
-          package_cloud push PreMiD/Linux/debian/bullseye ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
-          package_cloud push PreMiD/Linux/ubuntu/xenial ./dist/app/dist/${{ steps.info.outputs.productName }}.debu
-          package_cloud push PreMiD/Linux/ubuntu/yakkety ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
-          package_cloud push PreMiD/Linux/ubuntu/bionic ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
-          package_cloud push PreMiD/Linux/ubuntu/cosmic ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
-          package_cloud push PreMiD/Linux/ubuntu/disco ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
-          package_cloud push PreMiD/Linux/ubuntu/focal ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
-        env:
-          PACKAGECLOUD_TOKEN: ${{ secrets.PACKAGECLOUD_TOKEN }}
-      - name: Publish RPM packages.
-        run: |
-          package_cloud push PreMiD/Linux/el/5 ./dist/app/dist/${{ steps.info.outputs.productName }}.rpm
-          package_cloud push PreMiD/Linux/el/6 ./dist/app/dist/${{ steps.info.outputs.productName }}.rpm
-          package_cloud push PreMiD/Linux/el/7 ./dist/app/dist/${{ steps.info.outputs.productName }}.rpm
-          package_cloud push PreMiD/Linux/el/8 ./dist/app/dist/${{ steps.info.outputs.productName }}.rpm
-          package_cloud push PreMiD/Linux/fedora/32 ./dist/app/dist/${{ steps.info.outputs.productName }}.rpm
-        env:
-          PACKAGECLOUD_TOKEN: ${{ secrets.PACKAGECLOUD_TOKEN }}
       - name: Build AppImage
         run: |
           jq -c '.productName = "PreMiD Portable"' ./dist/app/package.json > tmp.$$.json && mv tmp.$$.json ./dist/app/package.json
@@ -114,7 +83,7 @@ jobs:
           package_cloud push PreMiD/Linux/debian/stretch ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
           package_cloud push PreMiD/Linux/debian/buster ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
           package_cloud push PreMiD/Linux/debian/bullseye ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
-          package_cloud push PreMiD/Linux/ubuntu/xenial ./dist/app/dist/${{ steps.info.outputs.productName }}.debu
+          package_cloud push PreMiD/Linux/ubuntu/xenial ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
           package_cloud push PreMiD/Linux/ubuntu/yakkety ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
           package_cloud push PreMiD/Linux/ubuntu/bionic ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
           package_cloud push PreMiD/Linux/ubuntu/cosmic ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
