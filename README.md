@@ -1,7 +1,3 @@
-# Important information!
-
-<h3>Aur users that use DoomLerd's package should be safe as he says. We are not recommending to use it, but if you want you can still use it. Thanks to DoomLerd for handling aur repo still.</h3>
-
 <img src=".github/mLogo.png" width="150" height="150" align="left"></img>
 
 <h1>PreMiD <code>--linux</code></h1>
@@ -155,6 +151,8 @@ If command doesn't work, download **deb/rpm** file from our packagecloud repo or
 
 Uses [Arch User Repository](https://aur.archlinux.org/packages/premid);</br>
 Supported distributions are _itself_, Manjaro, Anarchy, Artix, Arco, ArchLabs, Endeavour, Archman, BlackArch, Liri OS and [every one that supports installing from AUR](https://wiki.archlinux.org/index.php/Arch-based_distributions#Active).
+
+**Warning:** This repo is not supported by us so we do not provide support for it. If you want our official PKGBUILD check [this](https://i.ririxi.dev/PKGBUILD).
 
 <a name="archinstall"></a>
 
