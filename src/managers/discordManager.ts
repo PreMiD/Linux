@@ -1,8 +1,9 @@
 import { Client } from "discord-rpc";
 import { app } from "electron";
 
-//* Import custom types
 import PresenceData from "../../@types/PreMiD/PresenceData";
+
+//* Import custom types
 
 //* Define Presence array
 export let rpcClients: Array<RPCClient> = [];
@@ -44,13 +45,6 @@ class RPCClient {
 		presenceData = presenceData ? presenceData : this.currentPresence;
 
 		if (!this.clientReady || !presenceData) return;
-
-		// Workaround
-		if (
-			presenceData.presenceData.largeImageText &&
-			presenceData.presenceData.largeImageText.includes("PreMiD")
-		)
-			presenceData.presenceData.largeImageText = `PreMiD 🐧 v${app.getVersion()}`;
 
 		this.client
 			.setActivity(presenceData.presenceData)
