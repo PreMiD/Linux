@@ -135,12 +135,14 @@ For **Ubuntu/Debian**:
 ```bash
 curl -s https://packagecloud.io/install/repositories/PreMiD/Linux/script.deb.sh | sudo bash
 ```
+Then run: ``apt install premid``
 
 For **Fedora/CentOS/RedHat**:
 
 ```bash
 curl -s https://packagecloud.io/install/repositories/PreMiD/Linux/script.rpm.sh | sudo bash
 ```
+Then run: ``yum install premid`` or use different package manager than ``yum``.
 
 If command doesn't work, download **deb/rpm** file from our packagecloud repo or override settings.
 
