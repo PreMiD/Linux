@@ -3,7 +3,7 @@
 	"productName": "PreMiD",
 	"author": "Florian 'Timeraa' Metz <me@timeraa.dev> (https://github.com/timeraa)",
 	"description": "Discord Rich Presence for web services",
-	"version": "2.2.18",
+	"version": "2.3.0",
 	"repository": {
 		"type": "git",
 		"url": "git://github.com/PreMiD/Linux.git"
@@ -26,7 +26,7 @@
 		"appId": "com.PreMiD.app",
 		"copyright": "PreMiD Org",
 		"linux": {
-			"maintainer": "ririxi <ririxichan@gmail.com> (https://github.com/ririxichan)",
+			"maintainer": "ririxi <ririxichan@gmail.com> (https://github.com/ririxidev)",
 			"category": "Utility",
 			"artifactName": "${productName}.${ext}",
 			"icon": "assets/appIcon.icns",
