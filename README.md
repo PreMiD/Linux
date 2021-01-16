@@ -154,8 +154,6 @@ If command doesn't work, download **deb/rpm** file from our packagecloud repo or
 Uses [Arch User Repository](https://aur.archlinux.org/packages/premid);</br>
 Supported distributions are _itself_, Manjaro, Anarchy, Artix, Arco, ArchLabs, Endeavour, Archman, BlackArch, Liri OS and [every one that supports installing from AUR](https://wiki.archlinux.org/index.php/Arch-based_distributions#Active).
 
-**Warning:** This repo is not maintained by us, so we do not provide support for it. If you want our official PKGBUILD check [this](https://i.ririxi.dev/premid/PKGBUILD).
-
 <a name="archinstall"></a>
 
 ### Installation instructions
