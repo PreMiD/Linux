@@ -2,7 +2,8 @@
 
 <h1>PreMiD <code>--linux</code></h1>
 Discord Rich Presence for web services!
-<br><br>
+<br>
+<br>
 
 ## Table of Contents
 
@@ -199,3 +200,5 @@ yay -S premid
 ```
 
 Other AUR/Pacman helpers work as well, although each one's functionality is different so you may face issues while using them.
+
+**Website:** https://premid.app   
