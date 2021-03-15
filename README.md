@@ -9,11 +9,6 @@ Discord Rich Presence for web services!
 - **[About](#about)**
   - [Stats](#stats)
   - [Requirements](#requirements)
-  - Examples (soon)
-  - FAQs (soon)
-  - Building (soon)
-  - [Support](#support)
-  - [Credits](#credits)
   - [License](#license)
 - **[Snapcraft](#snapcraft)** (TL;DR : _never_ ™️)
 - **[Portable AppImage](#appimage)** (_RECOMMENDED_)
@@ -69,24 +64,6 @@ It is unknown whether older versions of other distributions support it, so just 
     <img height="75px" draggable="false" src="https://discordapp.com/api/guilds/493130730549805057/widget.png?style=banner2" alt="Join our Discord!">
   </a>
 </div>
-
-<a name="credits"></a>
-
-### Credits
-
-Thanks to :
-
-- @nattadasu, @Rubensei, @Cairo2k18, zany130, Immanuel D, Friskytrash, Alexandre (and few other guys whom I forgot their names) for providing feedback on nightly releases.
-- @apriluwu for maintaining the Gentoo builds
-- @SlimShadyIAm and naka for formerly maintaining the Arch User Repository packages
-- The Electron community for various packages
-- Anyone else who has ever contributed to the project in any way.
-
-<a name="license"></a>
-
-### License
-
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FPreMiD%2FLinux.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FPreMiD%2FLinux?ref=badge_large)
 
 <img src=".github/snapcraft.png" width="100" height="100" align="right"></img>
 <a name="snapcraft"></a>
@@ -199,3 +176,10 @@ yay -S premid
 ```
 
 Other AUR/Pacman helpers work as well, although each one's functionality is different so you may face issues while using them.
+
+<a name="license"></a>
+
+### License
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FPreMiD%2FLinux.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FPreMiD%2FLinux?ref=badge_large)
+
