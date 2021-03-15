@@ -17,7 +17,7 @@
 		"init": "tsc && devScript --copyOnly",
 		"start": "electron dist/app/.",
 		"dev": "devScript",
-		"dist": "yarn update && tsc && devScript --copyOnly --depCheck && cd dist/app/ && yarn install",
+		"dist": "yarn upgrade && tsc && devScript --copyOnly --depCheck && cd dist/app/ && yarn install",
 		"build": "electron-builder --project ./dist/app/ -p never",
 		"build:appimage": "electron-builder --project ./dist/app/ build -l AppImage --x64 -p onTagOrDraft",
 		"build:n-appimage": "electron-builder --project ./dist/app/ build -l AppImage --x64 -p never"
