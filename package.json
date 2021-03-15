@@ -3,7 +3,7 @@
 	"productName": "PreMiD",
 	"author": "Florian 'Timeraa' Metz <me@timeraa.dev> (https://github.com/timeraa)",
 	"description": "Discord Rich Presence for web services",
-	"version": "2.3.1",
+	"version": "2.3.2",
 	"repository": {
 		"type": "git",
 		"url": "git://github.com/PreMiD/Linux.git"
@@ -17,7 +17,7 @@
 		"init": "tsc && devScript --copyOnly",
 		"start": "electron dist/app/.",
 		"dev": "devScript",
-		"dist": "tsc && devScript --copyOnly && cd dist/app/ && yarn install",
+		"dist": "yarn upgrade && tsc && devScript --copyOnly && cd dist/app/ && yarn install",
 		"build": "electron-builder --project ./dist/app/ -p never",
 		"build:appimage": "electron-builder --project ./dist/app/ build -l AppImage --x64 -p onTagOrDraft",
 		"build:n-appimage": "electron-builder --project ./dist/app/ build -l AppImage --x64 -p never"
@@ -26,7 +26,7 @@
 		"appId": "com.PreMiD.app",
 		"copyright": "PreMiD Org",
 		"linux": {
-			"maintainer": "ririxi <ririxichan@gmail.com> (https://github.com/ririxidev)",
+			"maintainer": "ririxi <mail@ririxi.dev> (https://github.com/ririxidev)",
 			"category": "Utility",
 			"artifactName": "${productName}.${ext}",
 			"icon": "assets/appIcon.icns",
@@ -51,7 +51,7 @@
 		]
 	},
 	"devDependencies": {
-		"@timeraa/devscript": "Timeraa/DevScript",
+		"ts-devscript": "1.0.8",
 		"@types/auto-launch": "5.0.1",
 		"@types/discord-rpc": "3.0.2",
 		"@types/node": "14.11.8",
@@ -62,7 +62,7 @@
 	},
 	"dependencies": {
 		"auto-launch": "5.0.5",
-		"discord-rpc": "github:discordjs/RPC",
+		"discord-rpc": "^3.2.0",
 		"electron-store": "6.0.1",
 		"electron-updater": "4.2.5",
 		"socket.io": "2.3.0",
