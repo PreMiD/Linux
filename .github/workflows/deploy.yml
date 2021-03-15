@@ -1,4 +1,4 @@
-name: CI
+name: PreMiD Linux Build
 on:
   repository_dispatch:
   push:
