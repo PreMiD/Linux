@@ -26,7 +26,7 @@
 		"appId": "com.PreMiD.app",
 		"copyright": "PreMiD Org",
 		"linux": {
-			"maintainer": "ririxi <ririxichan@gmail.com> (https://github.com/ririxidev)",
+			"maintainer": "ririxi <mail@ririxi.dev> (https://github.com/ririxidev)",
 			"category": "Utility",
 			"artifactName": "${productName}.${ext}",
 			"icon": "assets/appIcon.icns",
