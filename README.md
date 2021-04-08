@@ -135,7 +135,7 @@ For **Ubuntu/Debian**:
 ```bash
 curl -s https://packagecloud.io/install/repositories/PreMiD/Linux/script.deb.sh | sudo bash
 ```
-Then run: ``apt install premid``
+Then run: ``sudo apt install premid``
 
 For **Fedora/CentOS/RedHat**:
 
