@@ -18,17 +18,17 @@ jobs:
           echo "::set-output name=timestamp::$(date +%s)"
           echo "::set-output name=productName::$(node -p -e "require('./package.json').productName")"
           echo "::set-output name=version::$(node -p -e "require('./package.json').version")"
-      - name: Install Dependencies
+      - name: 📌 | Install Dependencies
         run: |
           yarn install
           yarn run dist
-      - name: Building
+      - name: 📦 | Building
         run: yarn run build
-      - name: Build AppImage
+      - name: 📦 | Build AppImage
         run: |
           jq -c '.productName = "PreMiD Portable"' ./dist/app/package.json > tmp.$$.json && mv tmp.$$.json ./dist/app/package.json
           yarn run build:n-appimage
-      - name: Create Release
+      - name: 🏷️ | Create Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
@@ -52,13 +52,13 @@ jobs:
         run: |
           echo "::set-output name=productName::$(node -p -e "require('./package.json').productName")"
           echo "::set-output name=version::$(node -p -e "require('./package.json').version")"
-      - name: Install Dependencies
+      - name: 📌 | Install Dependencies
         run: |
           yarn install
           yarn run dist
-      - name: Building
+      - name: 📦 | Building
         run: yarn run build
-      - name: Create Release
+      - name: 🏷️ | Create Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
@@ -76,22 +76,30 @@ jobs:
       - name: Install packagecloud.io CLI
         run: |
           gem install package_cloud
-      - name: Publish Debian/Ubuntu packages.
+      - name: 📦 | Upload Debian packages
         run: |
           package_cloud push PreMiD/Linux/debian/wheezy ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
           package_cloud push PreMiD/Linux/debian/jessie ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
           package_cloud push PreMiD/Linux/debian/stretch ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
           package_cloud push PreMiD/Linux/debian/buster ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
           package_cloud push PreMiD/Linux/debian/bullseye ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
+          package_cloud push PreMiD/Linux/debian/bookworm ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
+          package_cloud push PreMiD/Linux/debian/trixie ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
+        env:
+          PACKAGECLOUD_TOKEN: ${{ secrets.PACKAGECLOUD_TOKEN }}
+      - name: ⚡️ | Upload Ubuntu packages
+        run: |
           package_cloud push PreMiD/Linux/ubuntu/xenial ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
           package_cloud push PreMiD/Linux/ubuntu/yakkety ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
           package_cloud push PreMiD/Linux/ubuntu/bionic ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
           package_cloud push PreMiD/Linux/ubuntu/cosmic ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
           package_cloud push PreMiD/Linux/ubuntu/disco ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
           package_cloud push PreMiD/Linux/ubuntu/focal ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
+          package_cloud push PreMiD/Linux/ubuntu/groovy ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
+          package_cloud push PreMiD/Linux/ubuntu/hirsute ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
         env:
           PACKAGECLOUD_TOKEN: ${{ secrets.PACKAGECLOUD_TOKEN }}
-      - name: Publish RPM packages.
+      - name: ⚡️ | Upload RPM packages
         run: |
           package_cloud push PreMiD/Linux/el/5 ./dist/app/dist/${{ steps.info.outputs.productName }}.rpm
           package_cloud push PreMiD/Linux/el/6 ./dist/app/dist/${{ steps.info.outputs.productName }}.rpm
@@ -100,7 +108,7 @@ jobs:
           package_cloud push PreMiD/Linux/fedora/32 ./dist/app/dist/${{ steps.info.outputs.productName }}.rpm
         env:
           PACKAGECLOUD_TOKEN: ${{ secrets.PACKAGECLOUD_TOKEN }}
-      - name: Publish AppImage
+      - name: ⚡️ | Upload AppImage to Draft release
         run: |
           jq -c '.productName = "PreMiD Portable"' ./dist/app/package.json > tmp.$$.json && mv tmp.$$.json ./dist/app/package.json
           yarn run build:appimage
