@@ -13,7 +13,6 @@ Discord Rich Presence for web services!
   - FAQs (soon)
   - Building (soon)
   - [Support](#support)
-  - [Credits](#credits)
   - [License](#license)
 - **[Snapcraft](#snapcraft)** (TL;DR : _never_ ™️)
 - **[Portable AppImage](#appimage)** (_RECOMMENDED_)
@@ -70,18 +69,6 @@ It is unknown whether older versions of other distributions support it, so just 
   </a>
 </div>
 
-<a name="credits"></a>
-
-### Credits
-
-Thanks to :
-
-- @nattadasu, @Rubensei, @Cairo2k18, zany130, Immanuel D, Friskytrash, Alexandre (and few other guys whom I forgot their names) for providing feedback on nightly releases.
-- @apriluwu for maintaining the Gentoo builds
-- @SlimShadyIAm and naka for formerly maintaining the Arch User Repository packages
-- The Electron community for various packages
-- Anyone else who has ever contributed to the project in any way.
-
 <a name="license"></a>
 
 ### License
@@ -123,28 +110,30 @@ wget https://github.com/PreMiD/Linux/releases/latest/download/PreMiD-Portable.Ap
 
 Either if you want to try PreMiD or just don't want to install it, this one's the best, it's always up to date but _DOESN'T AUTO-START WITH THE SYSTEM!_</br>If you get tired of having to open it each time, use the other packages (according to your distribution).
 
+# Package managers
+
 <img src=".github/packagecloud.png" width="100" height="100" align="right"></img>
 <a name="packagecloud"></a>
 
-# PackageCloud
+## PackageCloud
 
-We released deb/rpm packages at our packagecloud repo. Please visit it at https://packagecloud.io/PreMiD/Linux and download your deb/rpm package or use automatic script.
+With scripts below you can install our repos to your package manager and install our program and update it from their command! For .deb or .rpm files, please check [this link](https://packgecloud.io/PreMiD/Linux).
 
-For **Ubuntu/Debian**:
+- **Ubuntu** or **Debian**:
 
 ```bash
 curl -s https://packagecloud.io/install/repositories/PreMiD/Linux/script.deb.sh | sudo bash
 ```
-Then run: ``apt install premid``
+Then run: ``sudo apt install premid``
 
-For **Fedora/CentOS/RedHat**:
+- **Fedora** or **CentOS** or **RedHat**:
 
 ```bash
 curl -s https://packagecloud.io/install/repositories/PreMiD/Linux/script.rpm.sh | sudo bash
 ```
 Then run: ``yum install premid`` or use different package manager than ``yum``.
 
-If command doesn't work, download **deb/rpm** file from our packagecloud repo or override settings.
+If command doesn't work, download **deb** or **rpm** file from our packagecloud repo or override settings.
 
 <a name="arch"></a>
 <img src=".github/iusearchbtw.svg" width="100" height="100" align="right"></img>
