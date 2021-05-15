@@ -117,7 +117,7 @@ Either if you want to try PreMiD or just don't want to install it, this one's th
 
 ## PackageCloud
 
-With scripts below you can install our repos to your package manager and install our program and update it from their command! For .deb or .rpm files, please check [this link](https://packgecloud.io/PreMiD/Linux).
+With scripts below you can install our repos to your package manager and install our program and update it from their command! For .deb or .rpm files, please check [this link](https://packagecloud.io/PreMiD/Linux).
 
 - **Ubuntu** or **Debian**:
 
