@@ -1,4 +1,4 @@
-name: CI
+name: Deployer
 on:
   repository_dispatch:
   push:
@@ -97,6 +97,7 @@ jobs:
           package_cloud push PreMiD/Linux/ubuntu/focal ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
           package_cloud push PreMiD/Linux/ubuntu/groovy ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
           package_cloud push PreMiD/Linux/ubuntu/hirsute ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
+          package_cloud push PreMiD/Linux/ubuntu/impish ./dist/app/dist/${{ steps.info.outputs.productName }}.deb
         env:
           PACKAGECLOUD_TOKEN: ${{ secrets.PACKAGECLOUD_TOKEN }}
       - name: ⚡️ | Upload RPM packages
