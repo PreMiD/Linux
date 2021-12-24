@@ -1,6 +1,7 @@
-import { Menu, Tray, app, shell } from "electron";
+import { app, Menu, shell, Tray } from "electron";
 import { join } from "path";
-import { trayManager } from "..";
+
+import { trayManager } from "../";
 import { checkForUpdate, updateProcess } from "../util/updateChecker";
 import { connected } from "./socketManager";
 
@@ -79,4 +80,4 @@ export class TrayManager {
 	}
 }
 
-app.once("quit", () => trayManager.tray.destroy());
+app.once("quit", () => trayManager?.tray.destroy());
