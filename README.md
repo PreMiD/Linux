@@ -126,6 +126,18 @@ curl -s https://packagecloud.io/install/repositories/PreMiD/Linux/script.deb.sh 
 ```
 Then run: ``sudo apt install premid``
 
+If you are getting errors saying that there isn't a package named premid try with this command replacing `dist` by the actual distribution name.
+
+```bash
+curl -s https://packagecloud.io/install/repositories/PreMiD/Linux/script.deb.sh | sudo os=Ubuntu dist=hirsute bash
+```
+
+Note: You can get the value for `dist` using the following.
+
+```bash
+cat /etc/os-release | grep "UBUNTU_CODENAME" | cut -d "=" -f2
+```
+
 - **Fedora** or **CentOS** or **RedHat**:
 
 ```bash
