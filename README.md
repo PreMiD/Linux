@@ -189,10 +189,10 @@ or manually from the [Arch User Repository](https://aur.archlinux.org/packages/p
 
 ### Additional notes
 
-If your distro uses pacman, then you have to install one of the helpers first. If you don't have any, Yay is recommended, run :
+If your distro uses pacman, then you have to install one of the helpers first. If you don't have any, Yay is recommended, as root run :
 
 ```bash
-git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
+pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
 ```
 
 ```bash
