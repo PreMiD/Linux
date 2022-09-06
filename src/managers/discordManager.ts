@@ -19,7 +19,8 @@ class RPCClient {
 
 		this.clientId = clientId;
 		this.client = new Client({
-			clientId
+			clientId,
+			debug: true
 		});
 
 		this.client.once("ready", () => {
