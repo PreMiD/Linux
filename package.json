@@ -14,7 +14,7 @@
 	"homepage": "https://premid.app",
 	"license": "MPL-2.0",
 	"scripts": {
-		"init": "tsc && copyfiles -u 1 src/assets/** dist/app/ && copyfiles -f package.json dist/app/",
+		"init": "tsc && npx copyfiles -u 1 src/assets/** dist/app/ && npx copyfiles -f package.json dist/app/",
 		"start": "electron dist/app/. --unhandled-rejections=strict",
 		"dev": "npx nodemon",
 		"dist": "tsc && npx nodemon && cd dist/app/ && yarn install",
