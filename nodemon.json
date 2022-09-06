@@ -1,0 +1,5 @@
+{
+  "watch": ["src"],
+  "ext": "*",
+  "exec": "tsc && yarn run start"
+}

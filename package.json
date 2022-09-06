@@ -14,10 +14,10 @@
 	"homepage": "https://premid.app",
 	"license": "MPL-2.0",
 	"scripts": {
-		"init": "tsc && devScript --copyOnly",
+		"init": "tsc",
 		"start": "electron dist/app/. --unhandled-rejections=strict",
-		"dev": "devScript",
-		"dist": "tsc && devScript --copyOnly && cd dist/app/ && yarn install",
+		"dev": "npx nodemon",
+		"dist": "tsc && npx nodemon && cd dist/app/ && yarn install",
 		"build": "electron-builder --project ./dist/app/ -p never",
 		"build:appimage": "electron-builder --project ./dist/app/ build -l AppImage --x64 -p onTagOrDraft",
 		"build:n-appimage": "electron-builder --project ./dist/app/ build -l AppImage --x64 -p never"
@@ -52,17 +52,16 @@
 	},
 	"devDependencies": {
 		"@types/auto-launch": "5.0.1",
-		"@types/discord-rpc": "3.0.5",
 		"@types/node": "14.14.37",
 		"@types/socket.io": "2.1.13",
 		"electron": "11.3.0",
 		"electron-builder": "23.0.3",
-		"ts-devscript": "1.0.8",
-		"typescript": "4.0.3"
+		"nodemon": "^2.0.19",
+		"typescript": "4.8.2"
 	},
 	"dependencies": {
+		"@xhayper/discord-rpc": "^1.0.4",
 		"auto-launch": "5.0.5",
-		"discord-rpc": "^3.2.0",
 		"electron-store": "6.0.1",
 		"electron-updater": "5.0.1",
 		"socket.io": "3.1.1",

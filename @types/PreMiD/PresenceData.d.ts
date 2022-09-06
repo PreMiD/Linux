@@ -1,4 +1,4 @@
-import * as Discord from "discord-rpc";
+import * as Discord from "@xhayper/discord-rpc";
 
 export default interface PresenceData {
   /**
@@ -21,7 +21,7 @@ export default interface PresenceData {
   /**
    * Discord Presence which gets sent directly to Discord app
    */
-  presenceData: Discord.Presence;
+  presenceData: Discord.SetActivity;
   /**
    * Determines if the service should be hidden (clearActivity)
    */
