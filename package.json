@@ -17,7 +17,7 @@
 		"init": "tsc && npx copyfiles -u 1 src/assets/** dist/app/ && npx copyfiles -f package.json dist/app/",
 		"start": "electron dist/app/. --unhandled-rejections=strict",
 		"dev": "npx nodemon",
-		"dist": "tsc && npx nodemon && cd dist/app/ && yarn install",
+		"dist": "yarn run init && cd dist/app/ && yarn install",
 		"build": "electron-builder --project ./dist/app/ -p never",
 		"build:appimage": "electron-builder --project ./dist/app/ build -l AppImage --x64 -p onTagOrDraft",
 		"build:n-appimage": "electron-builder --project ./dist/app/ build -l AppImage --x64 -p never"
