@@ -12,3 +12,5 @@ src/package.json
 
 *.app
 *.js
+
+.DS_Store
