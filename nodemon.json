@@ -1,5 +1,5 @@
 {
-  "watch": ["src"],
+  "watch": ["@types", "src"],
   "ext": "*",
   "exec": "yarn run init && yarn run start"
 }
