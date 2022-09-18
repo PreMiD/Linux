@@ -1,5 +1,0 @@
-{
-  "watch": ["@types", "src", "tsconfig.json", "package.json"],
-  "ext": "*",
-  "exec": "yarn run init && yarn run start"
-}
