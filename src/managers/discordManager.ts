@@ -1,4 +1,4 @@
-import { Client } from "discord-rpc";
+import { Client } from "@xhayper/discord-rpc";
 import { app } from "electron";
 
 import PresenceData from "../../@types/PreMiD/PresenceData";
@@ -19,7 +19,7 @@ class RPCClient {
 
 		this.clientId = clientId;
 		this.client = new Client({
-			transport: "ipc"
+			clientId
 		});
 
 		this.client.once("ready", () => {
@@ -36,7 +36,7 @@ class RPCClient {
 				))
 		);
 
-		this.client.login({ clientId: this.clientId }).catch(() => this.destroy());
+		this.client.login().catch(() => this.destroy());
 
 		console.log(`Create RPC client (${this.clientId})`);
 	}
@@ -47,7 +47,7 @@ class RPCClient {
 		if (!this.clientReady || !presenceData) return;
 
 		this.client
-			.setActivity(presenceData.presenceData)
+			.user?.setActivity(presenceData.presenceData)
 			.catch(() => this.destroy());
 	}
 
@@ -56,13 +56,13 @@ class RPCClient {
 
 		if (!this.clientReady) return;
 
-		this.client.clearActivity().catch(() => this.destroy());
+		this.client.user?.clearActivity().catch(() => this.destroy());
 	}
 
 	async destroy() {
 		try {
 			console.log(`Destroy RPC client (${this.clientId})`);
-			this.client.clearActivity();
+			this.client.user?.clearActivity();
 			this.client.destroy();
 
 			rpcClients = rpcClients.filter(
@@ -101,9 +101,8 @@ export function clearActivity(clientId: string = undefined) {
 }
 
 export async function getDiscordUser() {
-	const user = await new Client({ transport: "ipc" }).login({
-		clientId: "503557087041683458"
-	});
+	const user = new Client({ clientId: "503557087041683458" });
+	await user.login();
 	return user.user;
 }
 

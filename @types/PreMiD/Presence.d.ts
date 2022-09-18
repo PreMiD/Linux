@@ -1,4 +1,4 @@
-import * as Discord from "discord-rpc";
+import * as Discord from "@xhayper/discord-rpc";
 
 export default interface Presence {
   /**
