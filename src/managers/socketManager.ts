@@ -24,8 +24,15 @@ export function init() {
 			serveClient: false,
 			allowEIO3: true,
 			allowRequest: (req, callback) => {
-				const noOriginHeader = req.headers.origin === undefined;
-				callback(null, noOriginHeader);
+				if (req.headers.origin === undefined) return callback(null, true);
+				//* 2.5.0+ only allows extensions to connect
+				if (
+					req.headers.origin.startsWith("chrome-extension://") ||
+					req.headers.origin.startsWith("moz-extension://")
+				)
+					return callback(null, true);
+
+				callback("Origin not allowed", false);
 			}
 		});
 		server.listen(3020, () => {
