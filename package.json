@@ -2,7 +2,7 @@
 	"name": "premid",
 	"productName": "PreMiD",
 	"author": "Florian 'Timeraa' Metz <me@timeraa.dev> (https://github.com/Timeraa)",
-	"description": "Discord Rich Presence for web services for Linux!",
+	"description": "Discord Rich Presence for web services!",
 	"version": "2.3.4",
 	"repository": {
 		"type": "git",
