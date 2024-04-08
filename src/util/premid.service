@@ -1,0 +1,10 @@
+[Unit]
+Description=Systemd service for autostarting Premid on Login
+
+[Service]
+Type=simple
+StandardOutput=journal
+ExecStart=~/.config/premid/PreMiD*.AppImage
+
+[Install]
+WantedBy=default.target
