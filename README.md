@@ -97,21 +97,18 @@ The AppImage package is the recommended one if Discord works for you but other P
 <a name="appimageinstall"></a>
 
 ### Installation instructions
+We have a autosetup script for AppImages. It will download the latest PreMiD version and also add it to autostart. 
+Note: This script does **NOT** work on ```runit``` based systems. 
 
 ```bash
-wget https://github.com/PreMiD/Linux/releases/latest/download/PreMiD-Portable.AppImage && chmod a+x PreMiD*.AppImage
-```
-
-```bash
-# Just double-click it or run
-./PreMiD*.AppImage
+wget https://raw.githubusercontent.com/PreMiD/Linux/master/autosetup.sh && chmod +x autosetup.sh && ./autosetup.sh
 ```
 
 <a name="appimagenotes"></a>
 
 ### Additional notes
 
-Either if you want to try PreMiD or just don't want to install it, this one's the best, it's always up to date but _DOESN'T AUTO-START WITH THE SYSTEM!_</br>If you get tired of having to open it each time, use the other packages (according to your distribution).
+Either if you want to try PreMiD or just don't want to install it, this one's the best, it's always up to date. It also has the easiest installation steps!</br>
 
 # Package managers
 
@@ -188,6 +185,41 @@ pacaur -S premid
 
 or manually from the [Arch User Repository](https://aur.archlinux.org/packages/premid) if you know what you're doing.
 
+
+Sometimes, PreMiD may not be added to your autostart applications automatically.
+If you're on Desktop Environments like [GNOME](https://wiki.archlinux.org/title/GNOME) or [KDE](https://wiki.archlinux.org/title/KDE), there are ways to add it to the autostart apps, via settings. 
+But for [Window Managers](https://wiki.archlinux.org/title/Window_manager#List_of_window_managers) and Desktop Environments with no autostart setup,
+All you need to do is make a systemd service for PreMiD.
+
+First, navigate to your systemd **user** directory(not sudo)
+```bash
+cd ~/.config/systemd/user/
+```
+
+Now make a new file, here named ```premid.service```. In this file, paste the following
+```bash
+[Unit]
+Description=Systemd service for autostarting PreMiD on Login
+
+[Service]
+Type=simple
+StandardOutput=journal
+ExecStart=premid
+
+[Install]
+WantedBy=default.target
+```
+
+Save the file and run the following command (not as sudo)
+
+```bashh
+systemctl enable --user --now premid.service
+```
+
+> Important Note
+
+> If your system uses ```runit``` instead of systemd, this autostart system will NOT work for you. <br>
+> You will need a ```runsv``` entry, read your distribution's manual to find out how.
 <a name="archnotes"></a>
 
 ### Additional notes
@@ -198,6 +230,7 @@ If your distro uses pacman, then you have to install one of the helpers first. I
 pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
 ```
 
+(Do not run this next command as sudo)
 ```bash
 yay -S premid
 ```
